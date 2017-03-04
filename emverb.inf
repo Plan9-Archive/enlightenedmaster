@@ -1,0 +1,398 @@
+!============================================================================
+! Entry point functions
+
+[ Amusing;
+	print "Have you tried...
+^^";
+];
+
+[ Deathmessage;
+	switch(deadflag) {
+	3: print "You have violated simulation parameters. Please UNDO.";
+	default: "This branch of the game universe has come to an end.";
+	}
+];
+
+[ Timepasses;
+	if (clockoff == true)
+		return true;
+	if (the_time == 0){
+		daynumber = daynumber + 1;
+		print "^Midnight strikes and a new day dawns.^(This is day number ", daynumber,")^";
+		switch(daynumber){
+		default: return true;
+		}
+	}
+];
+
+[ Initialise;
+	lookmode = 1;
+	location = base;
+	player.description = "You are a human being in search of the Enlightened Master.";
+	settime(0,60);
+	print "^^You are at the beginning of your journey to the Enlightened Master.^^";
+	getenter();
+];
+
+[ PrintTaskName task_number;
+	switch (task_number) {
+	}
+];
+
+!============================================================================
+! Utility functions
+
+[ Getenter;
+	print "^Press enter to continue.^^";
+	keycharprimitive();
+];
+
+[ Movechar whereami;
+	whereami=parent(self);
+];
+
+!============================================================================
+! Verb functions
+
+[ Aboutsub;
+	"Enlightened Master is a puzzleless game of philosophical exploration.";
+];
+
+[ Bindsub;
+	"^You attempt the bind of ", (name) noun, " on top of ", (name) second, " but nothing interesting happens...";
+];
+
+[ Bombsub;
+	"Not a good idea unless you are inside a videogame.";
+];
+
+[ Clockonsub;
+	clockoff = false;
+	"Clock story triggers set to on. >sleep advances to the next day, >story advances to the next major plot event.";
+];
+
+[ Clockoffsub;
+	clockoff = true;
+	"Clock story triggers set to off. No plot events will occur automatically. >clockon to reactivate.";
+];
+
+[ Commentarysub;
+	if (commentary == false) {
+		print "Turning commentary on, enter >commentary again to deactivate.^";
+		commentary = true;
+		return true;
+	}
+	print "Turning commentary off.^";
+		commentary = false;
+];
+
+[ Contentsub;
+	"This game should be suitable for any player interested in its ideas.";
+];
+
+[ Creditssub;
+	"^Written and programmed by Ben Kidwell (mycroftiv)
+^Co-written, edited and tested by Maevele Straw
+^Thanks to Inform Designer's Manual, Inform Beginner's Guide and all Inform 6 resources
+^Written and playtested entirely in Plan 9 ANTS, 9front and Bell Labs variants^";
+];
+
+[ Dancesub;
+	"Despite your arthritis, you enjoy trying to put the rhythms of music inside your body. You dance in a loose, disorganized fashion, but it feels good.";
+];
+
+[ Designsub;
+	"Thanks, and I hope you are enjoying the game.";
+];
+
+[ Dodgesub;
+	"It doesn't make sense to do that now.";
+];
+
+[ Eastereggsub;
+];
+
+[ Emailsub;
+];
+
+[ Exitssub;
+	location.cant_go();
+];
+
+[ Expertsub;
+	expertmode = true;
+	clockoff = true;
+	"Expert-level puzzles and story logic on. Automatic clock events off.";
+];
+
+[ Exploresub;
+	"Another perfect night on your bike, riding wherever the fuck that you like...you return home hours later, tired but happy.";
+];
+
+[ Footnotesub;
+	switch(noun) {
+	1: "Not many footnotes yet, are there?";
+	default: "Probably a special case of the Navier-Stokes equations.";
+	};
+];
+
+[ Goalssub;
+];
+
+[ Helpsub;
+	"Move around using compass directions (n s e w ne nw se sw up down in out), examine things (x NAME), take things and look in your inventory (take NAME, i), and talk to characters (talk to NAME). An intro/guide: http://inform7.com/learn/eg/dm/IntroductionToIF.pdf
+^
+^You can come up with ideas for what to do next if you >think (or check >goals). Specific hints from the >hint command are available based on your location and progression in the story. You can also type >hint NAME for hints about objects in your vicinity. All required plot-advancing conversations are triggered by >talk to. Characters may have new >talk to responses after story events. Optional conversations are available with >ask NAME about and >tell NAME about. If you are not progressing on your own, the game will automatically trigger some plot events based on an internal timer. You can use >sleep to advance a day, and >story to skip to the next event. >clockoff will deactivate automatic story progression. >clockon to reactivate. >verblist will show all verbs needed to score all points. >summary will provide a mildly spoilery overview of the general plot of the game, and >walkthrough will provide a comprehensive command list to score all 999 points. >about and >credits provide some additional background and authorship information.^";
+];
+
+[ Hintsub;
+	print "(Different hints are available depending on your location and story progress. hint NAME will give object specific hints for things you can see.)^^";	
+	"The maximum score is 999 points. Many of those points can be missed if certain optional actions are not performed before plot events.";
+];
+
+[ Insertcylsub;
+];
+
+[ Lunarsub;
+	"The Moon smiles down at you.";
+];
+
+[ Namespacesub;
+	print "Active binds:^";
+];
+
+[ Petsub;
+	"You affectionately stroke the ", (name) noun, " but it doesn't reciprocate your affections.";
+];
+
+[ Playsub;
+	"Your skills don't extend so far as to be able to play the ", (name) noun;
+];
+
+[ Plughsub;
+	print "You speak the magic word, and you catch a glimpse of an ancient realm of college mainframe computers and 5 1/4 floppies...^";
+];
+
+[ Releasesub;
+];
+
+[ Reviewsub;
+	"A strange concept.";
+];
+
+[ Ridesub;
+	"You can't ride that.";
+];
+
+[ Shootsub;
+	"Not a good idea right now.";
+];
+
+[ Sleepwaitsub;
+!	daynumber = daynumber + 1;
+	settime(1380, 60);
+	print "You return home to sleep and drift off, a tourist in a different branch of the multiverse, then resume the next day where you left off.^";
+];
+
+[ Standardsub;
+	expertmode = false;
+	clockoff = false;
+	"Game puzzles and story set to standard difficulty. Automatic clock events on.";
+];
+
+[ Storysub;
+	if(daynumber < 1) {
+		settime(1380,60);
+		return true;
+	}
+	if(daynumber < 3) {
+		daynumber = 2;
+		settime(1380,60);
+		return true;
+	}
+	if(daynumber < 4) {
+		daynumber = 3;
+		settime(1380,60);
+		return true;
+	}
+	if(daynumber < 6) {
+		daynumber = 5;
+		settime(1380,60);
+		return true;
+	}
+	if(daynumber < 8) {
+		daynumber = 7;
+		settime(1380,60);
+		return true;
+	}
+	if(daynumber < 20) {
+		daynumber = 19;
+		settime(1380,60);
+		return true;
+	}
+	if(daynumber < 28) {
+		daynumber = 27;
+		settime(1380,60);
+		return true;
+	}
+	if(daynumber < 36) {
+		daynumber = 35;
+		settime(1380,60);
+		return true;
+	}
+	if(daynumber < 42) {
+		daynumber = 41;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 54) {
+		daynumber = 53;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 55) {
+		daynumber = 54;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 56) {
+		daynumber = 55;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 57) {
+		daynumber = 56;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 60) {
+		daynumber = 59;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 72) {
+		daynumber = 71;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 79) {
+		daynumber = 78;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 86) {
+		daynumber = 85;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 92) {
+		daynumber = 91;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 99) {
+		daynumber = 98;
+		settime(1380, 60);
+		return true;
+	}
+	if(daynumber < 101) {
+		daynumber = 100;
+		settime(1380, 60);
+		return true;
+	}
+	"You aren't allowed to skip any further ahead in the storyline.";
+];
+
+[ Summarysub;
+	print "The full walkthrough has a complete move sequence for a 999 point game.^";
+];
+
+[ Talksub;
+	if(noun hasnt animate)
+		"The soundwaves of your voice bounce off the ", (name) noun, " affecting its molecular structure in subtle ways.";
+	"Your words go unanswered.";
+];
+
+[ Titlesub;
+	"Alternate titles:";
+];
+
+[ Usesub;
+	if(noun hasnt animate)
+		"Either the ", (name) noun, " can't be used, or you need to find a more specific verb.";
+	"To interact with characters, try talk to NAME, ask NAME about THING, tell NAME about THING, or give THING to NAME.";
+];
+
+[ Verblistsub;
+	"n s e w ne nw se sw u d in out, examine, take, drop, give, talk to, tell, use, play";
+];
+
+[ Visitsub;
+	"You don't have anywhere to visit right now.";
+];
+
+[ Walkthroughsub;
+];
+
+[ Winsub;
+	deadflag = 2;
+	"Sure, you win! Success is for you to define. If you want to keep playing, just >undo.";
+];
+
+[ Xyzzysub;
+	print "There is a trans-dimensional short-circuit of interactive fiction tradition, and you catch a brief glimpse of a brick building near a stream and a metal grate before you blink and find yourself...^";
+];
+
+!============================================================================
+! Grammar and Verbs
+
+Include "Grammar";
+
+Verb "about" *	-> About;
+Verb "bind"	* noun noun	-> Bind
+	* noun 'to'/'with'/'and'/'on'/'in' noun -> Bind;
+Verb "bomb" *	-> Bomb;
+Verb "clockon" *	-> Clockon;
+Verb "clockoff" *	-> Clockoff;
+Verb "commentary" *	-> Commentary;
+Verb "content" *	-> Content;
+Verb "credits" *	-> Credits;
+Verb "dance" *	-> Dance;
+Verb "design" *	-> Design;
+Verb "dodge" * 	-> Dodge;
+Verb "easter" * 'egg'	-> Easteregg;
+Verb "email" *	-> Email;
+Verb "exits" *	-> Exits;
+Verb "expert" *	-> Expert;
+Verb "explore" *	-> Explore;
+Verb "footnote" * number	-> Footnote;
+Verb "goals" *	-> Goals;
+Verb "help" *	-> Help;
+Verb "hint" *	-> Hint
+	* noun	-> Hint;
+Extend "insert" * 'cylinder'	-> Insertcyl;
+Verb "lunar" *	-> Lunar;
+Verb "namespace" "ns" *	-> Namespace;
+Verb "pet" * noun	-> Pet;
+Verb "play" * noun	-> Play
+	* 'with' noun	-> Play;
+Verb "plugh" *	-> Plugh;
+Verb "release" * noun	-> Release;
+Verb "review" *	-> Review;
+Verb "ride" * noun	-> Ride;
+Verb "shoot" *		-> Shoot;
+Extend "sleep" replace *	-> Sleepwait;
+Verb "spin" = 'turn';
+Verb "standard" *	-> Standard;
+Verb "story" *	-> Story;
+Verb "summary" *	-> Summary;
+Verb "talk" * noun -> Talk
+	* 'to'/'with' noun -> Talk;
+Verb "titles" *	-> Title;
+Verb "use" * noun	-> Use;
+Verb "verblist" *	-> Verblist;
+Verb "visit" * topic	-> Visit;
+Verb "walkthrough" *	-> Walkthrough;
+Verb "win" *	-> Win;
+Verb "xyzzy" *	-> Xyzzy;
+

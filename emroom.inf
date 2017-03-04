@@ -1,0 +1,9 @@
+!============================================================================
+! The game locations
+
+Room	base "At the base of an immense mountain"
+	with
+	name 'base' 'mountain',
+	description "A huge mountain towers above you, a vertical landscape of grey rock and glittering snow.",
+	cant_go "Your path is upward.",
+	has outside;

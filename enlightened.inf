@@ -1,0 +1,125 @@
+!% -v8
+!% -SDXes
+!% $MAX_VERBS=165
+!% $MAX_LABELS=1100
+
+! Library Version: Inform 6 -- Release 6/12-beta1 -- Serial number 140724
+
+!============================================================================
+! Configuration constants
+
+Release 1;
+Serial "170204";
+Constant Story "Enlightened Master";
+Constant AMUSING_PROVIDED;
+Constant DEATH_MENTION_UNDO;
+Constant MAX_SCORE = 999;
+Constant TASKS_PROVIDED;
+Constant NUMBER_TASKS = 63;
+Array task_scores -> 
+	9 9 9 9 9 9 9 9 9 
+	9 9 9 9 9 9 9 9 9 
+	9 99 9 9 9 9 9 9 9 
+	9 9 9 9 9 9 9 9 9 
+	9 9 9 9 9 9 69 9 9 
+	9 39 9 99 9 9 9 9 9
+	9 9 9 9 9 99 99 9 9;
+
+Constant Headline
+"Enlightened Master";
+
+!============================================================================
+! Include parser, new library messages, verblib
+
+Include "Parser";
+Object  LibraryMessages
+	with	
+	before [;
+	Attack:	"'Don't make me tell you about the Moon Tears Ceremony,' you threaten.";
+	Buy:    "You think about transforming the economic system with Plan 9 unique digital object alternative community currencies. Afterwards, you might be able to bind-buy that, but you can't right now.";
+	Climb:	"Some rise...some fall...some climb...to get to Terrapin. (Footnote 1)";
+	Dig:    "In another reality, your dog-self burrows deeply within the Earth, uncovering exactly the items needed to continue your journey. In this world, you accomplish nothing.";
+	Drink:	"Reach out your hand, if your cup be empty. If your cup is full, may it be again. (Footnote 7)";
+	Fill:	"Bass great, Lesh Philling!";
+	Jump:	"You close your eyes, focus, and jump from one universe to a different branch. When you open your eyes, things seem a little different, but what has changed, you do not know.";
+	Kiss:	"There are probably better ways to express your feelings of love and devotion.";
+	Listen:	"At first, you hear nothing unexpected. As you listen more closely, you begin to sense the inner pulse of all things, the beat of the universe, and the deep bass lines of mathematical symmetry that provide the foundation for the cosmic symphony.";
+	Mild:	"Your chipmunk chuckles. (Footnote 3)";
+	Pray:   "You offer prayers to many Gods as well as the laws of physics.";
+	Sing:   "You start with a bit of Mozart's Marriage of Figaro, move on to a few of your favorite Wu-Tang verses, and conclude with a heartfelt imitation of how IU would sound singing Ripple by the Grateful Dead.";
+	Smell:	"You smell nothing special, but life itself has a slight scent of lavender and nag champa.";
+	Sorry:  "Rather than being caught up in apologies and regrets, you try to maintain focus on future improvement.";
+	Strong: "Let the world know how you feel.";
+	Swim:   "The Madison lakes are beautiful to look at, and some people have the immune system required to cope with algae and bacteria, but you prefer to sit on the shore and watch the chromatic flickering of the ripples.";
+	Swing:	"You'd like to be a real swinger, but I guess they are calling it 'polyamory' nowadays.";
+	Taste:	"Everything tastes delicious, with a slight undertone of ginger and fresh basil.";
+	Think:	goalssub();
+			return true;
+	Wait:	"You feel yourself traveling through spacetime at the speed of light.";
+	Wake:	"You would rather stay within this infinitely fascinating dream we are dreaming together.";
+	Miscellany:
+		if (lm_n == 38)
+			"That action is outside the scope of this simulation.";
+		if (lm_n == 39)
+			"This game world does not provide that level of detail.";
+	];
+Include "VerbLib";
+
+!============================================================================
+! Global variables
+
+Global clockoff = false;
+Global expertmode = false;
+Global commentary = false;
+Global eventcount = 0;
+Global daynumber = 0;
+Attribute outside;
+
+!============================================================================
+! Object classes
+
+Class	Room
+	with
+	wintext 0,
+	description "UNIMPLEMENTED ROOM DESCRIPTION",
+	has	light;
+
+Class	Scene
+	with
+	wintext 0,
+	description "UNIMPLEMENTED SCENE DESCRIPTION",
+	before [;
+		drop: 
+			"Mulitverse travel protip: do NOT drop your items while visiting alternate universes.";
+	],
+	cant_go "Your presence in this branch of the multiverse is anchored to this scene, you must participate before you can leave.",
+	has light;
+
+Class	Decor
+	with
+	description "UNIMPLEMENTED DECOR DESCRIPTION",
+	has	scenery;
+
+Class	Prop
+	with
+	description "UNIMPLEMENTED PROP DESCRIPTION",
+	has	static;
+
+Class	Character
+	with
+	description "UNIMPLEMENTED ACTOR DESCRIPTION",
+	has	proper animate;
+
+!===========================================================================
+! Game rooms, characters, props and objects, storyline and verbs
+
+Include "emroom.inf";
+
+Include "emchar.inf";
+
+Include "emobj.inf";
+
+Include "emstor.inf";
+
+Include "emverb.inf";
+
