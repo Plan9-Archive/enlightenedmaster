@@ -5,5 +5,89 @@ Room	base "At the base of an immense mountain"
 	with
 	name 'base' 'mountain',
 	description "A huge mountain towers above you, a vertical landscape of grey rock and glittering snow.",
+	u_to icefall,
 	cant_go "Your path is upward.",
 	has outside;
+
+Room	icefall "In the midst of a treacherous icefall"
+	with
+	description "You are in the midst of a potentially lethal maze of giant slabs and boulders of ice. A frozen river trapped in a crystallized waterfall. You hear ominous creaks and snaps from the gradual shifting of the ice around you.",
+	d_to base,
+	u_to camp_low;
+
+Room	camp_low "Campsite, Low Altitude"
+	with
+	description "A sheltered overhang provides space for the lowest campsite on the flanks of the mountain.",
+	d_to icefall,
+	u_to snow_hill;
+
+Room	snow_hill "Long sloped snowfield"
+	with
+	description "A seemingly endless expanse of snow angles upward ahead of you. The scale is vast and overwhelming, and the frigid air makes the bigness almost painfully isolating.",
+	d_to camp_low,
+	u_to boulders;
+
+Room	boulders "Piled boulders"
+	with
+	description "The angle of the mountain becomes abruptly steeper, and the transition is marked by a wide band of piled boulders, evidently at rest here after breaking off the mountain's higher altitudes. The footing is treacherous and the pace slow.",
+	d_to snow_hill,
+	u_to middle_wall;
+
+Room	middle_wall "Near-vertical wall"
+	with
+	description "The first section of technical rock climbing is a five hundred foot slab of nearly vertical rock. With slow and careful use of safety ropes and anchor points, you have reached the midpoint of the cliff section.",
+	d_to boulders,
+	u_to camp_mid;
+
+Room	camp_mid "Campsite, Middle Altitude"
+	with
+	description "A broad shelf of rock above the cliff is a suitable site for the mid-level campsite.",
+	d_to middle_wall,
+	u_to exposed_ridge;
+
+Room	exposed_ridge "Exposed ridge"
+	with
+	description "The path upward is a knife-edged ridge that ascends gradually toward the summit, with precipitous descents on either side. The howling wind sometimes forces you to crouch and attempt to anchor yourself with your ice axe.",
+	d_to camp_mid,
+	u_to ice_chimney;
+
+Room	ice_chimney "Narrow ice-filled rock chimney"
+	with
+	description "The climb becomes grim and precarious as it reaches another vertical section, this one composed of a series of ice-filled creases pointing toward the peak. You probe the ice with screws, seeking secure anchor, and try to control your labored breathing in the thin air.",
+	d_to exposed_ridge,
+	u_to traverse;
+
+Room	traverse "Horizontal traverse"
+	with
+	description "Upward momentum is interrupted by a menacing overhanging shelf of ice. It is necessary to traverse sideways beneath it. You try to balance safety with speed, knowing that at any moment, ice falling from above could tear you off the side of the mountain.",
+	d_to ice_chimney,
+	u_to camp_high;
+
+Room	camp_high "Campsite, High Altitude"
+	with
+	description "There is no comfort here save a patch of snow just wide enough to pitch a tent. The wind howls and moans ceaselessly. The view, however, is staggering. The other mountains in the range, tall as they are, are now far below you.",
+	d_to traverse,
+	u_to high_wall;
+
+Room	high_wall "High wall, summit approach"
+	with
+	description "The final vertical wall section is even taller and more featureless, almost abstract in its completely impersonal and unyielding solidity. Your tools and gear are almost useless here, and you feel sure that your few precarious placements would not save you if you lost your grip.",
+	d_to camp_high,
+	u_to final_approach;
+
+Room	final_approach "Gale-swept crags, summit approach"
+	with
+	description "Near the summit, the wind attains a malevolent ferocity. The sharp crags and outcroppings of the final ascent act as funnels, forcing you to detour around gaps from which the wind emerges with the force of a cannon. The cold has penetrated so deeply that numbness has spread from your limbs into your torso.",
+	d_to high_wall,
+	u_to summit;
+
+Room	summit	"Summit, by cave entrance"
+	with
+	description "You have attained the summit, but you feel no surge of triumph. The physical peak means nothing to you. To reach the threshold of this cave, you would have as happily plumbed the ocean, trekked deserts, or searched the city slums. The summit is a bleak pinnacle of frozen granite with a panoramic view of the surrounding mountains. The entrance to the cave of the Enlightened Master is a few meteres below the summit, a jagged darkness angling back down into the mountain.",
+	d_to final_approach,
+	in_to cave_entrance;
+
+Room	cave_entrance "Cave entrance"
+	with
+	description "You have finally reached your goal, the cave where the Enlightened Master is to be found.",
+	out_to summit;

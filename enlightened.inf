@@ -71,7 +71,6 @@ Include "VerbLib";
 Global clockoff = false;
 Global expertmode = false;
 Global commentary = false;
-Global eventcount = 0;
 Global daynumber = 0;
 Attribute outside;
 
