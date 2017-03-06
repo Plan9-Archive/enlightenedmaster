@@ -42,6 +42,17 @@
 !============================================================================
 ! Utility functions
 
+[ Checkgame;
+	if(em.balls == 0) {
+		em.ingame = 0;
+		print "^Out of balls. Final score: ", em.points, "^";
+		if(em.points > em.hiscore) {
+			em.hiscore = em.points;
+			print "That's a new high score! Congratulations!^";
+		}
+	}
+];
+
 [ Getenter;
 	print "^Press enter to continue.^^";
 	keycharprimitive();
@@ -185,7 +196,26 @@
 ];
 
 [ Shootsub;
-	"Not a good idea right now.";
+	if(em.ingame == 0)
+		"You need to play a new game.";
+	switch(random(4)) {
+	1:	em.balls--;
+		em.points = em.points + 1;
+		print "You find the machine's actions baffling, and lose your ball quickly.^";
+		checkgame();
+	2:	em.balls--;
+		em.points = em.points + 25;
+		print "You make a few shots, and a woman's voice commends you and tells you that you are making progress on the Path.^";
+		checkgame();
+	3:	em.balls--;
+		em.points = em.points + 100;
+		print "You hit both sides of the figure 8 ramp system in succession, and the Master announces that you have transcended the finite and reached a countable infinity, the first step toward transcendence.^";
+		checkgame();
+	4:	em.balls--;
+		em.points = em.points + 237;
+		print "Without fully understanding your own reflexive reactions, you manage to light a series of targets that spell out Definable Powerset, and a small doorway in the corner of the playfield clicks open. 'Constructible universe G now open' says the Master enticingly.^";
+		checkgame();
+	};
 ];
 
 [ Sleepwaitsub;
@@ -201,105 +231,6 @@
 ];
 
 [ Storysub;
-	if(daynumber < 1) {
-		settime(1380,60);
-		return true;
-	}
-	if(daynumber < 3) {
-		daynumber = 2;
-		settime(1380,60);
-		return true;
-	}
-	if(daynumber < 4) {
-		daynumber = 3;
-		settime(1380,60);
-		return true;
-	}
-	if(daynumber < 6) {
-		daynumber = 5;
-		settime(1380,60);
-		return true;
-	}
-	if(daynumber < 8) {
-		daynumber = 7;
-		settime(1380,60);
-		return true;
-	}
-	if(daynumber < 20) {
-		daynumber = 19;
-		settime(1380,60);
-		return true;
-	}
-	if(daynumber < 28) {
-		daynumber = 27;
-		settime(1380,60);
-		return true;
-	}
-	if(daynumber < 36) {
-		daynumber = 35;
-		settime(1380,60);
-		return true;
-	}
-	if(daynumber < 42) {
-		daynumber = 41;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 54) {
-		daynumber = 53;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 55) {
-		daynumber = 54;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 56) {
-		daynumber = 55;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 57) {
-		daynumber = 56;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 60) {
-		daynumber = 59;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 72) {
-		daynumber = 71;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 79) {
-		daynumber = 78;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 86) {
-		daynumber = 85;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 92) {
-		daynumber = 91;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 99) {
-		daynumber = 98;
-		settime(1380, 60);
-		return true;
-	}
-	if(daynumber < 101) {
-		daynumber = 100;
-		settime(1380, 60);
-		return true;
-	}
 	"You aren't allowed to skip any further ahead in the storyline.";
 ];
 
@@ -341,6 +272,7 @@
 
 [ Xyzzysub;
 	print "There is a trans-dimensional short-circuit of interactive fiction tradition, and you catch a brief glimpse of a brick building near a stream and a metal grate before you blink and find yourself...^";
+	playerto(master_chamber);
 ];
 
 !============================================================================
