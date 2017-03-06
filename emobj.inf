@@ -1,3 +1,20 @@
 !============================================================================
 ! The room decorations
 
+!============================================================================
+! The immobile prop objects
+
+Prop	em "Enlightened Master" master_chamber
+	with
+	article "the",
+	name 'enlightened' 'master' 'pinball' 'machine' 'game' 'table' 'pin',
+	hiscore 0,
+	description "The Enlightened Master is a pinball machine with a purple cabinet and gold metal. The standard flipper buttons are bright pink. The backglass is a detailed artist's impression of the mountain peak at sunset, casting an impossibly long shadow across the clouds toward the horizon. The playfield has an open central section with an illustration of a woman juggling golden apples at the center. Two ramps rise from the playfield and cross paths in a figure 8. Numerous other toys and redirections are arranged around the perimeter of the playfield. You can't see them clearly unless the machine is being played. Above the playfield is a silvery dot-matrix display showing the current high score.",
+	before [;
+		play: switch(random(4)) {
+			1: "You find the machine's actions baffling, and all 3 of your balls are lost quickly.";
+			2: "You make a few shots, and a woman's voice commends you and tells you that you are making progress on the Path.";
+			3: "You hit both sides of the figure 8 ramp system in succession, and the Master announces that you have transcended the finite and reached a countable infinity, the first step toward transcendence.";
+			4: "Without fully understanding your own reflexive reactions, you manage to light a series of targets that spell out Definable Powerset, and a small doorway in the corner of the playfield clicks open. 'Constructible universe G now open' says the Master enticingly.";
+		}
+	];

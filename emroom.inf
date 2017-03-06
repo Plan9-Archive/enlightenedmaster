@@ -89,5 +89,19 @@ Room	summit	"Summit, by cave entrance"
 
 Room	cave_entrance "Cave entrance"
 	with
-	description "You have finally reached your goal, the cave where the Enlightened Master is to be found.",
-	out_to summit;
+	description "You have finally reached your goal, the cave where the Enlightened Master is to be found. A path is visible leading downward.",
+	out_to summit,
+	d_to master_threshold;
+
+Room	master_threshold "Shadowy cavern"
+	with
+	description "The light grows dim as the path twists away from the entrance. After a few turns, the path enters a larger space. All that is visible is blue-black shadow, save for the western wall, which flickers dimly. You hear a faint sound of bells from the west.",
+	u_to cave_entrance,
+	w_to master_chamber;
+
+Room	master_chamber "Chamber of the Enlightened Master"
+	with
+	description "Here, deep within the cave atop the Highest Mountain, you have found the Enlightened Master.^
+^
+It's a pinball machine.",
+	e_to master_threshold;
