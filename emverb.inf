@@ -195,27 +195,52 @@
 	"You can't ride that.";
 ];
 
-[ Shootsub;
+[ Flipsub;
 	if(em.ingame == 0)
 		"You need to play a new game.";
 	switch(random(4)) {
 	1:	em.balls--;
 		em.points = em.points + 1;
-		print "You find the machine's actions baffling, and lose your ball quickly.^";
+		print "You find the machine's actions baffling, and lose your ball quickly. +1 point^";
 		checkgame();
 	2:	em.balls--;
 		em.points = em.points + 25;
-		print "You make a few shots, and a woman's voice commends you and tells you that you are making progress on the Path.^";
+		print "You make a few shots, and a woman's voice commends you and tells you that you are making progress on the Path. +25 points^";
 		checkgame();
 	3:	em.balls--;
 		em.points = em.points + 100;
-		print "You hit both sides of the figure 8 ramp system in succession, and the Master announces that you have transcended the finite and reached a countable infinity, the first step toward transcendence.^";
+		print "You hit both sides of the figure 8 ramp system in succession, and the Master announces that you have transcended the finite and reached a countable infinity, the first step toward transcendence. +100 points^";
 		checkgame();
 	4:	em.balls--;
 		em.points = em.points + 237;
-		print "Without fully understanding your own reflexive reactions, you manage to light a series of targets that spell out Definable Powerset, and a small doorway in the corner of the playfield clicks open. 'Constructible universe G now open' says the Master enticingly.^";
+		print "Without fully understanding your own reflexive reactions, you manage to light a series of targets that spell out Definable Powerset, and a small doorway in the corner of the playfield clicks open. 'Constructible universe G now open' says the Master enticingly. +237 points^";
 		checkgame();
 	};
+];
+
+[ Shootsub;
+	if(noun hasnt shootable)
+		"You can only shoot objects in the pinball game.";
+	if(em.ingame == 0)
+		"You need to be playing Enlightened Master.";
+	skill.shoot++;
+	if(random(100) < 10) {
+		em.balls--;
+		print "You miss, and the ball takes an unlucky bounce down the left outlane.^";
+		checkgame();
+		return true;
+	}
+	if((random(100) + skill.shoot) < 50) {
+		em.balls--;
+		print "You miss the shot and the ball drains straight down the middle.^";
+		checkgame();
+		return true;
+	}
+	if((random(100) + skill.shoot) < 100)
+		"You miss your target, and the ball returns to your flippers.";
+	noun.hit++;
+	em.points = em.points + 25;
+	print_ret "Hit number ", noun.hit, " on ", (name)noun, " +25 points^";
 ];
 
 [ Sleepwaitsub;
@@ -297,6 +322,7 @@ Verb "email" *	-> Email;
 Verb "exits" *	-> Exits;
 Verb "expert" *	-> Expert;
 Verb "explore" *	-> Explore;
+Verb "flip" * 	-> Flip;
 Verb "footnote" * number	-> Footnote;
 Verb "goals" *	-> Goals;
 Verb "help" *	-> Help;
@@ -312,7 +338,7 @@ Verb "plugh" *	-> Plugh;
 Verb "release" * noun	-> Release;
 Verb "review" *	-> Review;
 Verb "ride" * noun	-> Ride;
-Verb "shoot" *		-> Shoot;
+Verb "shoot" * noun	-> Shoot;
 Extend "sleep" replace *	-> Sleepwait;
 Verb "spin" = 'turn';
 Verb "standard" *	-> Standard;

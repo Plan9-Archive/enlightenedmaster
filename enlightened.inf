@@ -72,7 +72,7 @@ Global clockoff = false;
 Global expertmode = false;
 Global commentary = false;
 Global daynumber = 0;
-Attribute outside;
+Attribute shootable;
 
 !============================================================================
 ! Object classes

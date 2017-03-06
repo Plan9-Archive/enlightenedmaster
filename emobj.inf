@@ -1,6 +1,24 @@
 !============================================================================
 ! The room decorations
 
+Decor	lramp "left ramp" master_chamber
+	with
+	name 'left' 'ramp',
+	hit 0,
+	has shootable;
+
+Decor	rramp "right ramp" master_chamber
+	with
+	name 'right' 'ramp',
+	hit 0,
+	has shootable;
+
+Decor	magnet "magnet" master_chamber
+	with
+	name 'magnet',
+	hit 0,
+	has shootable;
+
 !============================================================================
 ! The immobile prop objects
 
@@ -24,3 +42,14 @@ Prop	em "Enlightened Master" master_chamber
 			self.points = 0;
 			"You hit the start button and a melodious female voice greets you. 'Welcome, learner, are you ready to walk the Path?'";
 	];
+
+object	skill "player skills"
+	with
+	catch 10,
+	shoot 20,
+	tilt 10,
+	nudge 5,
+	launch 25,
+	multi 20,
+	grit 15,
+	luck 10;

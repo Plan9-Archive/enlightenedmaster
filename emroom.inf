@@ -6,8 +6,7 @@ Room	base "At the base of an immense mountain"
 	name 'base' 'mountain',
 	description "A huge mountain towers above you, a vertical landscape of grey rock and glittering snow.",
 	u_to icefall,
-	cant_go "Your path is upward.",
-	has outside;
+	cant_go "Your path is upward.";
 
 Room	icefall "In the midst of a treacherous icefall"
 	with
