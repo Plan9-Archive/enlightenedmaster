@@ -238,9 +238,10 @@
 	}
 	if((random(100) + skill.shoot) < 100)
 		"You miss your target, and the ball returns to your flippers.";
-	noun.hit++;
-	em.points = em.points + 25;
-	print_ret "Hit number ", noun.hit, " on ", (name)noun, " +25 points^";
+	noun.hit();
+!	noun.hit++;
+!	em.points = em.points + 25;
+!	print_ret "Hit number ", noun.hit, " on ", (name)noun, " +25 points^";
 ];
 
 [ Sleepwaitsub;

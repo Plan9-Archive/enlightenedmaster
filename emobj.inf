@@ -1,23 +1,17 @@
 !============================================================================
 ! The room decorations
 
-Decor	lramp "left ramp" master_chamber
+Target	lramp "left ramp" master_chamber
 	with
-	name 'left' 'ramp',
-	hit 0,
-	has shootable;
+	name 'left' 'ramp';
 
-Decor	rramp "right ramp" master_chamber
+Target	rramp "right ramp" master_chamber
 	with
-	name 'right' 'ramp',
-	hit 0,
-	has shootable;
+	name 'right' 'ramp';
 
-Decor	magnet "magnet" master_chamber
+Target	magnet "magnet" master_chamber
 	with
-	name 'magnet',
-	hit 0,
-	has shootable;
+	name 'magnet';
 
 !============================================================================
 ! The immobile prop objects

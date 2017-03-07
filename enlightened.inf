@@ -99,6 +99,18 @@ Class	Decor
 	description "UNIMPLEMENTED DECOR DESCRIPTION",
 	has	scenery;
 
+Class	Target
+	with
+	description "One of the numerous targets to shoot at on the Enlightened Master.",
+	hitcount 0,
+	hit [;
+		self.hitcount++;
+		em.points = em.points + 25;
+		print_ret "Hit number ", self.hitcount, " on ", (name)self, " +25 points^";
+	],
+	has scenery,
+	has shootable;
+
 Class	Prop
 	with
 	description "UNIMPLEMENTED PROP DESCRIPTION",
