@@ -1,6 +1,11 @@
 !============================================================================
 ! The room decorations
 
+Decor	instructions "instructions" master_chamber
+	with
+	name 'card' 'instruction' 'instructions',
+	description "PLAY to start game. Control with targeted commands, such as SHOOT LEFT RAMP, SHOOT RIGHT RAMP, SHOOT BUMPERS. You can also try FLIP to play a full ball automatically.";
+
 Target	lramp "left ramp" master_chamber
 	with
 	name 'left' 'ramp',
@@ -51,7 +56,7 @@ Target	bumpers "bumpers" master_chamber
 	triggers [;
 		if(self.value == 2 && self.hitcount > 20){
 			self.value = 4;
-			"Since you like those bumpers so much, I'm doubling their value for you.";
+			"~Since you like those bumpers so much, I'm doubling their value for you.~";
 		}
 		if(self.value == 4 && self.hitcount > 49){
 			self.value = 9;
@@ -94,6 +99,7 @@ Prop	em "Enlightened Master" master_chamber
 	hiscore 0,
 	ingame 0,
 	balls 0,
+	gamenumber 0,
 	description [;
 		print_ret "The Enlightened Master is a pinball machine with a purple cabinet and gold metal. The standard flipper buttons are bright pink. A card in the corner of the machine is labelled 'INSTRUCTIONS' and is filled with small print. The backglass is a detailed artist's impression of the mountain peak at sunset, casting an impossibly long shadow across the clouds toward the horizon. The playfield has an open central section with an illustration of a woman juggling golden apples at the center. Two ramps rise from the playfield and cross paths in a figure 8. A set of bumpers labeled '+1' are in the upper right. On the left, a curved metallic shape hovers over the words 'Forcing Magnet'. Numerous other toys and redirections are arranged around the perimeter of the playfield. You can't see them clearly unless the machine is being played. Above the playfield is a silvery dot-matrix display showing the current high score: ", self.hiscore;
 	],
@@ -106,7 +112,13 @@ Prop	em "Enlightened Master" master_chamber
 			self.points = 0;
 			objectloop(x has shootable) x.hitcount = 0;
 			objectloop(x has shootable) x.newgame();
-			"You hit the start button and a melodious female voice greets you. 'Welcome, learner, are you ready to walk the Path?'";
+			self.gamenumber++;
+			switch(self.gamenumber) {
+			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! Are you ready to continue following the Path? Just SHOOT whatever target you like. The bumpers are a good place to start.~";
+			2: "~I'm glad you're trying again. Don't get discouraged, your skill is increasing with every shot. What's hard now will be easy later. Of course, I'll have some new challenges for you then!~";
+			3: "~We're starting to get to know each other well now, aren't we? I'd introduce myself, but I really have too many different names to try to share them all.~";
+			default: "~Sure, I'm ready to go again!~";
+			};
 	];
 
 object	skill "player skills"
@@ -118,4 +130,4 @@ object	skill "player skills"
 	launch 25,
 	multi 20,
 	grit 15,
-	luck 10;
+	luck 0;

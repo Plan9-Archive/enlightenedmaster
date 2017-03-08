@@ -103,7 +103,15 @@ Class	Decor
 
 Class	Target
 	with
-	description "One of the numerous targets to shoot at on the Enlightened Master.",
+	description [;
+		x = 100 - self.difficulty + skill.shoot;
+		if (x < 0) x = 0;
+		if (x > 80) x = 80;
+		print "You have a ", x, "% chance of hitting the ", (name)self, " and a ";
+		x = self.risk - skill.shoot;
+		if (x < 10) x = 10;
+		print x, "% chance of losing your ball.^";
+	],
 	hitcount 0,
 	value 25,
 	risk 50,

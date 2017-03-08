@@ -30,7 +30,7 @@
 	location = base;
 	player.description = "You are a human being in search of the Enlightened Master.";
 	settime(0,60);
-	print "^^You are at the beginning of your journey to the Enlightened Master.^^";
+	print "^^You are finally nearing the end of your journey to the Enlightened Master.^^";
 	getenter();
 ];
 
@@ -49,6 +49,12 @@
 		if(em.points > em.hiscore) {
 			em.hiscore = em.points;
 			print "That's a new high score! Congratulations!^";
+		}
+		switch(em.gamenumber) {
+		1: "~I hope that was fun for you, we are just getting started! You want to play again, right?~";
+		2: "~Are you starting to get warmed up? I know there's a lot to learn, but since you came all this way to play with me, I hope you have the patience for it.~";
+		3: "~This feels good to me. Thanks for sticking with it, you are making real progress.~";
+		default: "~I will keep on trying for as long as you want, as long as you put effort in, so will I.~";
 		}
 	}
 ];
@@ -224,7 +230,8 @@
 	if(em.ingame == 0)
 		"You need to be playing Enlightened Master.";
 	skill.shoot++;
-	roll = random(100);
+	roll = random(100) + skill.luck;
+	skill.luck = 0;
 	if(roll < 10) {
 		em.balls--;
 		print "You miss, and the ball takes an unlucky bounce down the left outlane.^";
@@ -237,8 +244,13 @@
 		checkgame();
 		return true;
 	}
+	if(roll < 20) {
+		em.balls--;
+		skill.luck = skill.luck + 10;
+		"You miss the shot but the ball takes a nice bounce, increasing your luck on the next shot.^";
+	}
 	if(roll + skill.shoot < noun.difficulty)
-		"You miss your target, and the ball returns to your flippers.";
+		"You miss your target, but the ball returns to your flippers.";
 	noun.hit();
 	noun.triggers();
 ];
