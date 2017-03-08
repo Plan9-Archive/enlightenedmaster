@@ -35,31 +35,31 @@ Include "Parser";
 Object  LibraryMessages
 	with	
 	before [;
-	Attack:	"'Don't make me tell you about the Moon Tears Ceremony,' you threaten.";
-	Buy:    "You think about transforming the economic system with Plan 9 unique digital object alternative community currencies. Afterwards, you might be able to bind-buy that, but you can't right now.";
-	Climb:	"Some rise...some fall...some climb...to get to Terrapin. (Footnote 1)";
-	Dig:    "In another reality, your dog-self burrows deeply within the Earth, uncovering exactly the items needed to continue your journey. In this world, you accomplish nothing.";
-	Drink:	"Reach out your hand, if your cup be empty. If your cup is full, may it be again. (Footnote 7)";
-	Fill:	"Bass great, Lesh Philling!";
-	Jump:	"You close your eyes, focus, and jump from one universe to a different branch. When you open your eyes, things seem a little different, but what has changed, you do not know.";
+	Attack:	"That isn't your approach.";
+	Buy:    "Nothing is bought or sold here.";
+	Climb:	<<go u_obj>>;
+	Dig:    "The ground is frozen here.";
+	Drink:	"You aren't thirsty.";
+	Fill:	"That doesn't work.";
+	Jump:	"You hop and accomplish nothing.";
 	Kiss:	"There are probably better ways to express your feelings of love and devotion.";
-	Listen:	"At first, you hear nothing unexpected. As you listen more closely, you begin to sense the inner pulse of all things, the beat of the universe, and the deep bass lines of mathematical symmetry that provide the foundation for the cosmic symphony.";
-	Mild:	"Your chipmunk chuckles. (Footnote 3)";
-	Pray:   "You offer prayers to many Gods as well as the laws of physics.";
-	Sing:   "You start with a bit of Mozart's Marriage of Figaro, move on to a few of your favorite Wu-Tang verses, and conclude with a heartfelt imitation of how IU would sound singing Ripple by the Grateful Dead.";
+	Listen:	"You hear the wind.";
+	Mild:	"Okay.";
+	Pray:   "You meditate.";
+	Sing:   "You chant a mantra of compassion.";
 	Smell:	"You smell nothing special, but life itself has a slight scent of lavender and nag champa.";
 	Sorry:  "Rather than being caught up in apologies and regrets, you try to maintain focus on future improvement.";
-	Strong: "Let the world know how you feel.";
-	Swim:   "The Madison lakes are beautiful to look at, and some people have the immune system required to cope with algae and bacteria, but you prefer to sit on the shore and watch the chromatic flickering of the ripples.";
-	Swing:	"You'd like to be a real swinger, but I guess they are calling it 'polyamory' nowadays.";
+	Strong: "Your words are unheeded by the mountain air.";
+	Swim:   "Can't swim here.";
+	Swing:	"Nothing to swing from.";
 	Taste:	"Everything tastes delicious, with a slight undertone of ginger and fresh basil.";
 	Think:	goalssub();
 			return true;
-	Wait:	"You feel yourself traveling through spacetime at the speed of light.";
-	Wake:	"You would rather stay within this infinitely fascinating dream we are dreaming together.";
+	Wait:	"You wait calmly.";
+	Wake:	"You are already alert.";
 	Miscellany:
 		if (lm_n == 38)
-			"That action is outside the scope of this simulation.";
+			"Not possible.";
 		if (lm_n == 39)
 			"This game world does not provide that level of detail.";
 	];

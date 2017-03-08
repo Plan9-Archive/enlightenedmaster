@@ -64,10 +64,6 @@
 	keycharprimitive();
 ];
 
-[ Movechar whereami;
-	whereami=parent(self);
-];
-
 !============================================================================
 ! Verb functions
 
@@ -115,7 +111,7 @@
 ];
 
 [ Dancesub;
-	"Despite your arthritis, you enjoy trying to put the rhythms of music inside your body. You dance in a loose, disorganized fashion, but it feels good.";
+	"You dance in a loose, disorganized fashion, but it feels good.";
 ];
 
 [ Designsub;
@@ -129,9 +125,6 @@
 [ Eastereggsub;
 ];
 
-[ Emailsub;
-];
-
 [ Exitssub;
 	location.cant_go();
 ];
@@ -143,7 +136,7 @@
 ];
 
 [ Exploresub;
-	"Another perfect night on your bike, riding wherever the fuck that you like...you return home hours later, tired but happy.";
+	"You search the area, but find nothing not already described.";
 ];
 
 [ Footnotesub;
@@ -167,9 +160,6 @@
 	"The maximum score is 999 points. Many of those points can be missed if certain optional actions are not performed before plot events.";
 ];
 
-[ Insertcylsub;
-];
-
 [ Lunarsub;
 	"The Moon smiles down at you.";
 ];
@@ -188,9 +178,6 @@
 
 [ Plughsub;
 	print "You speak the magic word, and you catch a glimpse of an ancient realm of college mainframe computers and 5 1/4 floppies...^";
-];
-
-[ Releasesub;
 ];
 
 [ Reviewsub;
@@ -257,7 +244,7 @@
 [ Sleepwaitsub;
 !	daynumber = daynumber + 1;
 	settime(1380, 60);
-	print "You return home to sleep and drift off, a tourist in a different branch of the multiverse, then resume the next day where you left off.^";
+	print "You take a long nap.^";
 ];
 
 [ Standardsub;
@@ -329,7 +316,6 @@ Verb "dance" *	-> Dance;
 Verb "design" *	-> Design;
 Verb "dodge" * 	-> Dodge;
 Verb "easter" * 'egg'	-> Easteregg;
-Verb "email" *	-> Email;
 Verb "exits" *	-> Exits;
 Verb "expert" *	-> Expert;
 Verb "explore" *	-> Explore;
@@ -339,14 +325,12 @@ Verb "goals" *	-> Goals;
 Verb "help" *	-> Help;
 Verb "hint" *	-> Hint
 	* noun	-> Hint;
-Extend "insert" * 'cylinder'	-> Insertcyl;
 Verb "lunar" *	-> Lunar;
 Verb "namespace" "ns" *	-> Namespace;
 Verb "pet" * noun	-> Pet;
 Verb "play" * noun	-> Play
 	* 'with' noun	-> Play;
 Verb "plugh" *	-> Plugh;
-Verb "release" * noun	-> Release;
 Verb "review" *	-> Review;
 Verb "ride" * noun	-> Ride;
 Verb "shoot" * noun	-> Shoot;
