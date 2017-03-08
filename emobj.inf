@@ -12,7 +12,7 @@ Target	lramp "left ramp" master_chamber
 	triggers [;
 		if((choicelock.lockready == 0) && (rramp.hitcount > 0)){
 			choicelock.lockready = 1;
-			"Infinity ramp has activated Axiom of Choice lock.";
+			"~Good job, the Infinity ramp has activated Axiom of Choice lock. That's a hard shot though.~";
 		}
 	];
 
@@ -22,7 +22,7 @@ Target	rramp "right ramp" master_chamber
 	triggers [;
 		if((choicelock.lockready == 0) && (lramp.hitcount > 0)){
 			choicelock.lockready = 1;
-			"Infinity ramp has activated Axiom of Choice lock.";
+			"~Nicely played, the Infinity ramp has activated Axiom of Choice lock. That one's tricky so be careful.~";
 		}
 	];
 
@@ -31,7 +31,17 @@ Target	magnet "forcing magnet" master_chamber
 	name 'forcing' 'magnet',
 	value 50,
 	risk 65,
-	difficulty 125;
+	difficulty 125,
+	level 0,
+	triggers [;
+		if(self.level > 0)
+			return true;
+		if(choicelock.multicount > 0 && bumpers.hitcount > 49) {
+			em.points = em.points + 1000;
+			self.level++;
+			"~Wow! You got Induction on N, Axiom of Choice Multiball, AND you've hit the Forcing Magnet. That's a thousand point bonus for you.~";
+		}
+	];
 
 Target	bumpers "bumpers" master_chamber
 	with
@@ -66,12 +76,13 @@ Target	bumpers "bumpers" master_chamber
 
 Target	choicelock "choice lock" master_chamber
 	with
-	name 'axiom' 'choice' 'lock',
+	name 'axiom' 'choice' 'lock' 'aoc',
 	value 75,
 	risk 75,
 	difficulty 150,
 	lockready 0,
 	hasball 0,
+	multicount 0,
 	newgame [;
 		self.lockready = 0;
 		self.hasball = 0;
@@ -81,6 +92,7 @@ Target	choicelock "choice lock" master_chamber
 			"You need to activate both sides of the Infinity ramp to prime the Axiom lock.";
 		if(self.hasball == 1){
 			self.hasball = 0;
+			self.multicount++;
 			em.points = em.points + 500;
 			"MULTIBALL! 500 point bonus.";
 		}
@@ -101,7 +113,7 @@ Prop	em "Enlightened Master" master_chamber
 	balls 0,
 	gamenumber 0,
 	description [;
-		print_ret "The Enlightened Master is a pinball machine with a purple cabinet and gold metal. The standard flipper buttons are bright pink. A card in the corner of the machine is labelled 'INSTRUCTIONS' and is filled with small print. The backglass is a detailed artist's impression of the mountain peak at sunset, casting an impossibly long shadow across the clouds toward the horizon. The playfield has an open central section with an illustration of a woman juggling golden apples at the center. Two ramps rise from the playfield and cross paths in a figure 8. A set of bumpers labeled '+1' are in the upper right. On the left, a curved metallic shape hovers over the words 'Forcing Magnet'. Numerous other toys and redirections are arranged around the perimeter of the playfield. You can't see them clearly unless the machine is being played. Above the playfield is a silvery dot-matrix display showing the current high score: ", self.hiscore;
+		print_ret "The Enlightened Master is a pinball machine with a purple cabinet and gold metal. The standard flipper buttons are bright pink. A card in the corner of the machine is labelled 'INSTRUCTIONS' and is filled with small print. The backglass is a detailed artist's impression of the mountain peak at sunset, casting an impossibly long shadow across the clouds toward the horizon. The playfield has an open central section with an illustration of a woman juggling golden apples at the center. Two ramps rise from the playfield and cross paths in a figure 8. A set of bumpers labeled '+1' are in the upper right. In the upper left, a curved metallic shape hovers over the words 'Forcing Magnet'. Along the far left edge is a narrow gap next to the words 'AoC Lock'. Other toys and mechanisms are hidden while inactive. Above the playfield is a silvery dot-matrix display showing the current high score: ", self.hiscore;
 	],
 	before [;
 		play: 

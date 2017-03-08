@@ -245,7 +245,6 @@
 		return true;
 	}
 	if(roll < 20) {
-		em.balls--;
 		skill.luck = skill.luck + 10;
 		"You miss the shot but the ball takes a nice bounce, increasing your luck on the next shot.^";
 	}
