@@ -18,7 +18,7 @@
 		return true;
 	if (the_time == 0){
 		daynumber = daynumber + 1;
-		print "^Midnight strikes and a new day dawns.^(This is day number ", daynumber,")^";
+!		print "^Midnight strikes and a new day dawns.^(This is day number ", daynumber,")^";
 		switch(daynumber){
 		default: return true;
 		}
@@ -224,24 +224,23 @@
 	if(em.ingame == 0)
 		"You need to be playing Enlightened Master.";
 	skill.shoot++;
-	if(random(100) < 10) {
+	roll = random(100);
+	if(roll < 10) {
 		em.balls--;
 		print "You miss, and the ball takes an unlucky bounce down the left outlane.^";
 		checkgame();
 		return true;
 	}
-	if((random(100) + skill.shoot) < 50) {
+	if(roll + skill.shoot < noun.risk) {
 		em.balls--;
 		print "You miss the shot and the ball drains straight down the middle.^";
 		checkgame();
 		return true;
 	}
-	if((random(100) + skill.shoot) < 100)
+	if(roll + skill.shoot < noun.difficulty)
 		"You miss your target, and the ball returns to your flippers.";
 	noun.hit();
-!	noun.hit++;
-!	em.points = em.points + 25;
-!	print_ret "Hit number ", noun.hit, " on ", (name)noun, " +25 points^";
+	noun.triggers();
 ];
 
 [ Sleepwaitsub;
