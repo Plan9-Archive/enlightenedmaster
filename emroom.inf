@@ -104,3 +104,5 @@ Room	master_chamber "Chamber of the Enlightened Master"
 ^
 It's a pinball machine.",
 	e_to master_threshold;
+
+Scene	noscene "noscene";
