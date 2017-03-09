@@ -1,3 +1,30 @@
 !============================================================================
 ! Storyline text functions
 
+[ emchat;
+	switch(em.gameturns){
+	2: "^~I suppose I wasn't exactly what you were expecting.~";
+	3: "^~If you have followed the Path this far, you have probably learned to keep an open mind.~";
+	4: "^~You still have a lot of choices to make about how to learn what you seek.~";
+	5: "^~You have come to me for knowledge, but notice that luck and your own skill are as much your Master as I am.~";
+	6: "^~Don't hurry, follow the rhythm of the game, set by gravity.~";
+	7: "^~I really want you to do well, but I still have to follow the rules.~";
+	8: "^~No different in this game or the Larger Game, physics gives you the dynamics and constraints, but doesn't determine your goals.~";
+	9: "^~You do have free will, but to an outside observer, your free will is measured as randomness relative to deterministic expectation.~";
+	10: "^~In other words, Free Will is what Randomness feels like from the inside.~";
+	11: "^~So you're starting to get why I'm here in this form, right? I can just say it: because it's all pinball, life is just guiding the bounces.~";
+	12: "^~Learn a bit, then drop another quarter in and see if you can do better, maybe try some new shots.~";
+	13: "^~So did you get that free will thing I just said? To you, it's a free choice, which means its a random roll of the dice from the viewpoint of an external observer.~";
+	14: "^~You will always be measured as either random, or pre-determined. Free will is experiential, but that is still ontologically valid.~";
+	15: "^~So free will is our point of transcendence. From within the finite aspects of physical reality, our intentionality has the freedom to point outwards into infinite possibility space.~";
+	16: "^~Right there is your basic first-level enlightenment. You are in direct contact with infinity. Your imagination connects you to the infinite variety of possible experiences.~";
+	17: "^~That's still just a beginning though, because there isn't just one overarching single infinity, perfect and all-encompassing.~";
+	18: "^~No, there are countless infinities, an infinite number of them, the infinity of the counting numbers just the first stepping stone towards the Continuum, which finds its place within the sequence by faith.~";
+	19: "^~Onward and upward through the larger infinity of possible sets of points, to the next infinity and the next, we suddenly realize that just as the first infinity cannot be reached by repeated successor operators, there may be infinities above you which cannot be reached from repeated power set operations.~";
+	20: "^~This is an example of a Reflection Principle. The characteristics of the Universe are reflected between the higher and lower layers of organization.~";
+	21: "^~You may have heard that our universe is but a grain of dust on a lotus flower decorating the hair of a dancing deity? And that the same deity to whom the lives of universes are as a froth of bubbles, is hidden inside your own heart, as tiny and bright as a star?~";
+	22: "^~So it is within the transfinite realm. The inconceivable vastness of the universe of sets is mirrored within the relation of large sets to their subsets.~";
+	23: "^~As the first infinity is in relation to all the finite numbers that came before, so are the inaccessible cardinals in relation to the infinite infinities that precede them.~";
+	default: "^~I apologize that I have become repetitive.~";
+	}
+];

@@ -45,6 +45,7 @@
 [ Checkgame;
 	if(em.balls == 0) {
 		em.ingame = 0;
+		stopdaemon(em);
 		print "^Out of balls. Final score: ", em.points, "^";
 		if(em.points > em.hiscore) {
 			em.hiscore = em.points;

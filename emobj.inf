@@ -112,6 +112,7 @@ Prop	em "Enlightened Master" master_chamber
 	ingame 0,
 	balls 0,
 	gamenumber 0,
+	gameturns 0,
 	description [;
 		print_ret "The Enlightened Master is a pinball machine with a purple cabinet and gold metal. The standard flipper buttons are bright pink. A card in the corner of the machine is labelled 'INSTRUCTIONS' and is filled with small print. The backglass is a detailed artist's impression of the mountain peak at sunset, casting an impossibly long shadow across the clouds toward the horizon. The playfield has an open central section with an illustration of a woman juggling golden apples at the center. Two ramps rise from the playfield and cross paths in a figure 8. A set of bumpers labeled '+1' are in the upper right. In the upper left, a curved metallic shape hovers over the words 'Forcing Magnet'. Along the far left edge is a narrow gap next to the words 'AoC Lock'. Other toys and mechanisms are hidden while inactive. Above the playfield is a silvery dot-matrix display showing the current high score: ", self.hiscore;
 	],
@@ -125,12 +126,17 @@ Prop	em "Enlightened Master" master_chamber
 			objectloop(x has shootable) x.hitcount = 0;
 			objectloop(x has shootable) x.newgame();
 			self.gamenumber++;
+			startdaemon(self);
 			switch(self.gamenumber) {
 			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! Are you ready to continue following the Path? Just SHOOT whatever target you like. The bumpers are a good place to start.~";
 			2: "~I'm glad you're trying again. Don't get discouraged, your skill is increasing with every shot. What's hard now will be easy later. Of course, I'll have some new challenges for you then!~";
 			3: "~We're starting to get to know each other well now, aren't we? I'd introduce myself, but I really have too many different names to try to share them all.~";
 			default: "~Sure, I'm ready to go again!~";
 			};
+	],
+	daemon [;
+		self.gameturns++;
+		emchat();
 	];
 
 object	skill "player skills"
