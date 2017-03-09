@@ -62,15 +62,28 @@ Target	bumpers "bumpers" master_chamber
 		print "The ball gets ", self.bounces, " hits in the successor bumpers for ", self.bounces * self.value, " points.^";
 		if(self.hitcount < self.goal)
 			print self.goal - self.hitcount, " more hits to reach Induction on N.^";
+		switch(self.bounces){
+		1: "^~Counting from 0 to 1. Maybe the first step is the biggest of all.~";
+		2: "^~OK, I admit it: I think 'successor' is a very suggestive sounding term.~";
+		3: "^~Rhythm is created by the count, each +1 is a new beat.~";
+		4: "^~Four bounces is about where it starts to tickle a bit.~";
+		5: "^~Learn to enjoy that which is repetitive and typical.~";
+		6: "^~If you can't climb a mountain to play an Enlightened pinball machine, just watch the surface of a lake a little before sunset.~";
+		7: "^~That's my favorite number of bumper hits. Something about 7 just does it for me.~";
+		8: "^~With 8, I see the vertexes of a cube. It's ok if its just a stop sign for you.~";
+		9: "^~My friend Glenda says the space of names is richer than numbers, but I think it's equivalent.~";
+		10: "^~That's an optimum result when it comes to bumpin' the successors.~";
+		};
 	],		
 	triggers [;
 		if(self.value == 2 && self.hitcount > 20){
 			self.value = 4;
-			"~Since you like those bumpers so much, I'm doubling their value for you.~";
+			"^~Since you like those bumpers so much, I'm doubling their value for you.~";
 		}
 		if(self.value == 4 && self.hitcount > 49){
 			self.value = 9;
-			"Successor function reaches Induction on N. Opening Ordinal Staircase. (UNIMPLEMENTED)";
+			give staircase shootable;
+			"Successor function reaches Induction on N. New target available: Diagonalization Staircase.";
 		}
 	];
 
@@ -90,15 +103,28 @@ Target	choicelock "choice lock" master_chamber
 	triggers [;
 		if(self.lockready == 0)
 			"You need to activate both sides of the Infinity ramp to prime the Axiom lock.";
-		if(self.hasball == 1){
+		if(self.hasball == 1) {
 			self.hasball = 0;
 			self.multicount++;
 			em.points = em.points + 500;
-			"MULTIBALL! 500 point bonus.";
+			give self ~shootable;
+			"MULTIBALL! 500 point bonus. The Choice lock rotates under the table and vanishes. ~Excellent! Do you see these Golden Apples I'm juggling? Want to bet if I can take one apart and make two whole apples from it?";
 		}
 		self.hasball++;
-		"The ball hits the Axiom of Choice lock dead-on and the mechanism grabs it with a satisfying thunk.^";
+		"The ball hits the Axiom of Choice lock dead-on and the mechanism grabs it with a satisfying thunk. ~We need the Axiom of Choice to prove a lot of things that we want to be true. It lets you talk about things by describing them, even if you don't know how to build them.~^";
 	];
+
+Target	staircase "diagonalization staircase" master_chamber
+	with
+	name 'staircase' 'stairs' 'diagonal' 'diagonalization',
+	triggers [;
+		switch(self.hitcount){
+		1: "~Climbing the Diagonal Staircase is one of the first steps past the smallest infinity.~";
+		2: "~In any one-to-one mapping between the counting numbers and the reals, you can construct an unlisted real by making each digit N differ from the Nth digit of the Nth real.~";
+		3: "~Diagonalization is a special case of Cantor's proof showing that it is always impossible to construct a one-to-one mapping between the individual elements of a set and all possible multiple element subsets.~";
+		}
+	],
+	has ~shootable;
 
 !============================================================================
 ! The immobile prop objects

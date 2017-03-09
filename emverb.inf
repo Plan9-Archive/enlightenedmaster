@@ -268,6 +268,10 @@
 	"Your words go unanswered.";
 ];
 
+[ Targetssub;
+	objectloop(x has shootable) print (name) x, "^";
+];
+
 [ Titlesub;
 	"Alternate titles:";
 ];
@@ -342,6 +346,7 @@ Verb "story" *	-> Story;
 Verb "summary" *	-> Summary;
 Verb "talk" * noun -> Talk
 	* 'to'/'with' noun -> Talk;
+Verb "targets" *	-> Targets;
 Verb "titles" *	-> Title;
 Verb "use" * noun	-> Use;
 Verb "verblist" *	-> Verblist;
