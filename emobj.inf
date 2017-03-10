@@ -50,10 +50,10 @@ Target	bumpers "bumpers" master_chamber
 	risk 40,
 	difficulty 75,
 	bounces 0,
-	goal 50,
+	goal 30,
 	newgame [;
 		self.value = 2;
-		self.goal = 50;
+		self.goal = 30;
 	],
 	hit [;
 		self.bounces = random(10);
@@ -76,14 +76,14 @@ Target	bumpers "bumpers" master_chamber
 		};
 	],		
 	triggers [;
-		if(self.value == 2 && self.hitcount > 20){
+		if(self.value == 2 && self.hitcount > 15){
 			self.value = 4;
 			"^~Since you like those bumpers so much, I'm doubling their value for you.~";
 		}
-		if(self.value == 4 && self.hitcount > 49){
+		if(self.value == 4 && self.hitcount >= self.goal){
 			self.value = 9;
 			give staircase shootable;
-			"Successor function reaches Induction on N. New target available: Diagonalization Staircase.";
+			"^Successor function reaches Induction on N. New target available: Diagonalization Staircase.";
 		}
 	];
 

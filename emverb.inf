@@ -80,6 +80,31 @@
 	"Not a good idea unless you are inside a videogame.";
 ];
 
+[ Catchsub;
+	if(em.ingame == 0)
+		"You need to be playing Enlightened Master.";
+	skill.catch++;
+	roll = random(100) + skill.luck;
+	skill.luck = 0;
+	if(roll < 20) {
+		em.balls--;
+		print "You fail the catch, and the ball drops between the flippers and leaves the playfield.^";
+		checkgame();
+		return true;
+	}
+	if(roll < 40) {
+		skill.luck = -10;
+		"You miss the catch and the ball bounces oddly, decreasing your luck on the next shot.^";
+	}
+	if(roll + skill.catch > 100) {
+		skill.luck = 35;
+		skill.catch++;
+		"You successfully catch the ball and it now rests in the angle between the flipper and guide rail. Your next shot will have substantially increased accuracy.";
+	}
+	skill.luck = 5;
+	"You fail the catch but the angle is good for your next shot.";
+];
+
 [ Clockonsub;
 	clockoff = false;
 	"Clock story triggers set to on. >sleep advances to the next day, >story advances to the next major plot event.";
@@ -312,6 +337,7 @@ Verb "about" *	-> About;
 Verb "bind"	* noun noun	-> Bind
 	* noun 'to'/'with'/'and'/'on'/'in' noun -> Bind;
 Verb "bomb" *	-> Bomb;
+Verb "catch" *	-> Catch;
 Verb "clockon" *	-> Clockon;
 Verb "clockoff" *	-> Clockoff;
 Verb "commentary" *	-> Commentary;
