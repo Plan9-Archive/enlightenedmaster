@@ -84,7 +84,8 @@
 	if(em.ingame == 0)
 		"You need to be playing Enlightened Master.";
 	skill.catch++;
-	roll = random(100) + skill.luck;
+	roll = random(100) + skill.luck + (skill.nudge * skill.nudgeflag);
+	skill.nudgeflag = 0;
 	skill.luck = 0;
 	if(roll < 20) {
 		em.balls--;
@@ -194,6 +195,17 @@
 	print "Active binds:^";
 ];
 
+[ Nudgesub;
+	if(skill.nudgeflag == 1)
+		"You have already nudged for the next shot.";
+	if(skill.nudgecount > 10)
+		"Your nudging muscles are fatigued, no more nudging this game.";
+	skill.nudgecount++;
+	skill.nudge++;
+	skill.nudgeflag = 1;
+	"You brace yourself to give the Master a helpful nudge for the next action.";
+];
+
 [ Petsub;
 	"You affectionately stroke the ", (name) noun, " but it doesn't reciprocate your affections.";
 ];
@@ -243,7 +255,8 @@
 	if(em.ingame == 0)
 		"You need to be playing Enlightened Master.";
 	skill.shoot++;
-	roll = random(100) + skill.luck;
+	roll = random(100) + skill.luck + (skill.nudge * skill.nudgeflag);
+	skill.nudgeflag = 0;
 	skill.luck = 0;
 	if(roll < 10) {
 		em.balls--;
@@ -358,6 +371,7 @@ Verb "hint" *	-> Hint
 	* noun	-> Hint;
 Verb "lunar" *	-> Lunar;
 Verb "namespace" "ns" *	-> Namespace;
+Verb "nudge" *	-> Nudge;
 Verb "pet" * noun	-> Pet;
 Verb "play" * noun	-> Play
 	* 'with' noun	-> Play;

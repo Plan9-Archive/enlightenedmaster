@@ -75,6 +75,7 @@ Global daynumber = 0;
 Global roll = 0;
 Global x = 0;
 Attribute shootable;
+Attribute gametarget;
 
 !============================================================================
 ! Object classes
@@ -107,11 +108,15 @@ Class	Target
 		if(self hasnt shootable)
 			print_ret "The ", (name) self, " is not currently shootable.^";
 		x = 100 - self.difficulty + skill.shoot;
-		if (x < 0) x = 0;
 		if (x > 80) x = 80;
+		x = x + skill.luck + (skill.nudge * skill.nudgeflag);
+		if (x < 0) x = 0;
+		if (x > 100) x = 100;
 		print "You have a ", x, "% chance of hitting the ", (name)self, " and a ";
 		x = self.risk - skill.shoot;
 		if (x < 10) x = 10;
+		x = x - skill.luck - (skill.nudge * skill.nudgeflag);
+		if (x < 0) x = 0;
 		print x, "% chance of losing your ball.^";
 	],
 	hitcount 0,
@@ -127,6 +132,7 @@ Class	Target
 	],
 	newgame [;
 	],
+	has gametarget,
 	has scenery,
 	has shootable;
 

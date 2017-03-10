@@ -149,8 +149,9 @@ Prop	em "Enlightened Master" master_chamber
 			self.ingame = 1;
 			self.balls = 3;
 			self.points = 0;
-			objectloop(x has shootable) x.hitcount = 0;
-			objectloop(x has shootable) x.newgame();
+			skill.nudgecount = 0;
+			objectloop(x has gametarget) x.hitcount = 0;
+			objectloop(x has gametarget) x.newgame();
 			self.gamenumber++;
 			startdaemon(self);
 			switch(self.gamenumber) {
@@ -170,8 +171,13 @@ object	skill "player skills"
 	catch 10,
 	shoot 20,
 	tilt 10,
-	nudge 5,
+	nudge 4,
 	launch 25,
 	multi 20,
 	grit 15,
-	luck 0;
+	luck 0,
+	nudgeflag 0,
+	nudgecount 0;
+
+
+
