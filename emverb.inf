@@ -86,6 +86,7 @@
 		"You need to be playing Enlightened Master.";
 	if(em.balllaunched == 0)
 		"You need to LAUNCH first.";
+	em.didthing = 1;
 	skill.catch++;
 	roll = random(100) + skill.luck + (skill.nudge * skill.nudgeflag);
 	skill.nudgeflag = 0;
@@ -195,10 +196,12 @@
 		"You need to PLAY a new game first.";
 	if(em.balllaunched == 1)
 		"The ball has already been launched, SHOOT a target instead, CATCH, or NUDGE.";
+	em.didthing = 1;
 	roll = random(100) + skill.launch;
 	if(roll < 40) {
 		"The ball hits nothing on its way straight down the middle and out of play. ~Honey, that just ain't gonna cut it. I'm saving that ball, launch it again.~";
 	}
+	skill.launch++;
 	em.balllaunched = 1;
 	print em.balls, " balls remaining. ";
 	if(roll < 70) {
@@ -226,6 +229,7 @@
 		"You have already nudged for the next shot.";
 	if(skill.nudgecount > 10)
 		"Your nudging muscles are fatigued, no more nudging this game.";
+	em.didthing = 1;
 	skill.nudgecount++;
 	skill.nudge++;
 	skill.nudgeflag = 1;
@@ -257,6 +261,7 @@
 		"You need to play a new game.";
 	if(em.balllaunched == 0)
 		"You need to LAUNCH first.";
+	em.didthing = 1;
 	switch(random(4)) {
 	1:	em.balls--;
 		em.points = em.points + 1;
@@ -286,6 +291,7 @@
 		"You need to be playing Enlightened Master.";
 	if(em.balllaunched == 0)
 		"You need to LAUNCH first.";
+	em.didthing = 1;
 	skill.shoot++;
 	roll = random(100) + skill.luck + (skill.nudge * skill.nudgeflag);
 	skill.nudgeflag = 0;
@@ -307,7 +313,7 @@
 		"You miss the shot but the ball takes a nice bounce, increasing your luck on the next shot.^";
 	}
 	if(roll + skill.shoot < noun.difficulty)
-		"You miss your target, but the ball returns to your flippers.";
+		"You miss your target, but the ball returns toward your flippers.";
 	noun.hit();
 	noun.triggers();
 ];

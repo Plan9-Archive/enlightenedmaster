@@ -140,6 +140,7 @@ Prop	em "Enlightened Master" master_chamber
 	balls 0,
 	gamenumber 0,
 	gameturns 0,
+	didthing 0,
 	description [;
 		print_ret "The Enlightened Master is a pinball machine with a purple cabinet and gold metal. The standard flipper buttons are bright pink. A card in the corner of the machine is labelled 'INSTRUCTIONS' and is filled with small print. The backglass is a detailed artist's impression of the mountain peak at sunset, casting an impossibly long shadow across the clouds toward the horizon. The playfield has an open central section with an illustration of a woman juggling golden apples at the center. Two ramps rise from the playfield and cross paths in a figure 8. A set of bumpers labeled '+1' are in the upper right. In the upper left, a curved metallic shape hovers over the words 'Forcing Magnet'. Along the far left edge is a narrow gap next to the words 'AoC Lock'. Other toys and mechanisms are hidden while inactive. Above the playfield is a silvery dot-matrix display showing the current high score: ", self.hiscore;
 	],
@@ -164,6 +165,8 @@ Prop	em "Enlightened Master" master_chamber
 			};
 	],
 	daemon [;
+		if (em.didthing == 0) return;
+		em.didthing = 0;
 		self.gameturns++;
 		emchat();
 	];
