@@ -36,7 +36,7 @@ Target	magnet "forcing magnet" master_chamber
 	triggers [;
 		if(self.level > 0)
 			return true;
-		if(choicelock.multicount > 0 && bumpers.hitcount > 49) {
+		if(choicelock.multicount > 0 && bumpers.hitcount >= bumpers.goal) {
 			em.points = em.points + 1000;
 			self.level++;
 			"~Wow! You got Induction on N, Axiom of Choice Multiball, AND you've hit the Forcing Magnet. That's a thousand point bonus for you.~";
@@ -136,6 +136,7 @@ Prop	em "Enlightened Master" master_chamber
 	points 0,
 	hiscore 0,
 	ingame 0,
+	balllaunched 0,
 	balls 0,
 	gamenumber 0,
 	gameturns 0,
@@ -150,12 +151,13 @@ Prop	em "Enlightened Master" master_chamber
 			self.balls = 3;
 			self.points = 0;
 			skill.nudgecount = 0;
+			give choicelock shootable;
 			objectloop(x has gametarget) x.hitcount = 0;
 			objectloop(x has gametarget) x.newgame();
 			self.gamenumber++;
 			startdaemon(self);
 			switch(self.gamenumber) {
-			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! Are you ready to continue following the Path? Just SHOOT whatever target you like. The bumpers are a good place to start.~";
+			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! Are you ready to continue following the Path? LAUNCH, then just SHOOT whatever target you like. TARGETS shows what you can shoot currently. The bumpers are a good place to start.~";
 			2: "~I'm glad you're trying again. Don't get discouraged, your skill is increasing with every shot. What's hard now will be easy later. Of course, I'll have some new challenges for you then!~";
 			3: "~We're starting to get to know each other well now, aren't we? I'd introduce myself, but I really have too many different names to try to share them all.~";
 			default: "~Sure, I'm ready to go again!~";

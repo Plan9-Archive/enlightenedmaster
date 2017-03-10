@@ -43,6 +43,7 @@
 ! Utility functions
 
 [ Checkgame;
+	em.balllaunched = 0;
 	if(em.balls == 0) {
 		em.ingame = 0;
 		stopdaemon(em);
@@ -83,6 +84,8 @@
 [ Catchsub;
 	if(em.ingame == 0)
 		"You need to be playing Enlightened Master.";
+	if(em.balllaunched == 0)
+		"You need to LAUNCH first.";
 	skill.catch++;
 	roll = random(100) + skill.luck + (skill.nudge * skill.nudgeflag);
 	skill.nudgeflag = 0;
@@ -187,6 +190,25 @@
 	"The maximum score is 999 points. Many of those points can be missed if certain optional actions are not performed before plot events.";
 ];
 
+[ Launchsub;
+	if(em.ingame == 0)
+		"You need to PLAY a new game first.";
+	if(em.balllaunched == 1)
+		"The ball has already been launched, SHOOT a target instead, CATCH, or NUDGE.";
+	roll = random(100) + skill.launch;
+	if(roll < 40) {
+		"The ball hits nothing on its way straight down the middle and out of play. ~Honey, that just ain't gonna cut it. I'm saving that ball, launch it again.~";
+	}
+	em.balllaunched = 1;
+	print em.balls, " balls remaining. ";
+	if(roll < 70) {
+		em.points = em.points + 10;
+		"The ball scores a 10 point launch bonus and heads toward your flippers. ~Okay, you're live!~";
+	}
+	em.points = em.points + 25;
+	"The ball scores a 25 point launch bonus and bounces into the playfield. ~Time to dance!~";
+];
+
 [ Lunarsub;
 	"The Moon smiles down at you.";
 ];
@@ -196,6 +218,10 @@
 ];
 
 [ Nudgesub;
+	if(em.ingame == 0)
+		"You need to be playing Enlightened Master.";
+	if(em.balllaunched == 0)
+		"You need to LAUNCH first.";
 	if(skill.nudgeflag == 1)
 		"You have already nudged for the next shot.";
 	if(skill.nudgecount > 10)
@@ -229,6 +255,8 @@
 [ Flipsub;
 	if(em.ingame == 0)
 		"You need to play a new game.";
+	if(em.balllaunched == 0)
+		"You need to LAUNCH first.";
 	switch(random(4)) {
 	1:	em.balls--;
 		em.points = em.points + 1;
@@ -250,10 +278,14 @@
 ];
 
 [ Shootsub;
-	if(noun hasnt shootable)
+	if(noun hasnt gametarget)
 		"You can only shoot objects in the pinball game.";
+	if(noun hasnt shootable)
+		"That target isnt available to shoot at right now.";
 	if(em.ingame == 0)
 		"You need to be playing Enlightened Master.";
+	if(em.balllaunched == 0)
+		"You need to LAUNCH first.";
 	skill.shoot++;
 	roll = random(100) + skill.luck + (skill.nudge * skill.nudgeflag);
 	skill.nudgeflag = 0;
@@ -369,6 +401,7 @@ Verb "goals" *	-> Goals;
 Verb "help" *	-> Help;
 Verb "hint" *	-> Hint
 	* noun	-> Hint;
+Verb "launch" *	-> Launch;
 Verb "lunar" *	-> Lunar;
 Verb "namespace" "ns" *	-> Namespace;
 Verb "nudge" *	-> Nudge;
