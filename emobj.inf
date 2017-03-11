@@ -4,7 +4,7 @@
 Decor	instructions "instructions" master_chamber
 	with
 	name 'card' 'instruction' 'instructions',
-	description "PLAY to start game. Control with targeted commands, such as SHOOT LEFT RAMP, SHOOT RIGHT RAMP, SHOOT BUMPERS. You can also try FLIP to play a full ball automatically.";
+	description "PLAY to start game, then LAUNCH. Control with targeted commands, such as SHOOT LEFT RAMP, SHOOT RIGHT RAMP, SHOOT BUMPERS. TARGETS prints a list of what you can currently shoot. You can EXAMINE a target to see your percent chance of hitting it or losing your ball. You can NUDGE to increase your luck, and CATCH to attempt to trap the ball on the flipper to greatly the accuracy of your next shot. You can also try FLIP to play a full ball automatically. SKILL will list current skill levels.";
 
 Target	lramp "left ramp" master_chamber
 	with
@@ -87,6 +87,42 @@ Target	bumpers "bumpers" master_chamber
 		}
 	];
 
+Target	entropyegg "entropy egg" master_chamber
+	with
+	name 'entropy' 'egg',
+	broken 0,
+	newgame [;
+		give self shootable;
+	],
+	triggers [;
+		switch(self.hitcount) {
+		1: "The egg vibrates but does not crack. ~Entropy does mean random, but that's not the same as meaninglessness.~";
+		2: "A tiny crack appears at the point of impact. ~In fact entropy means new information entering the system.~";
+		3: "The crack in the shell grows. ~If information is truly new, that means it is unpredictable, hence it increases entropy.~";
+		4: "The crack widens and the egg quivers. ~So meaningfulness depends on entropy, stories are about how new information causes change over time.~";
+		5:  em.points = em.points + 100;
+			self.broken = 1;
+			give self ~shootable;
+			give fork shootable;
+			"The egg breaks open, and a very agitated chicken pops out. It scampers frantically around the playing field, plants the Free Will Fork where the egg had been, and then it squuezes itself through the launch tube and vanishes inside the machine. ~That's Flustercluck. She'll probably be back.~";
+		}
+	];
+
+Target	fork "free will fork" master_chamber
+	with
+	name 'free' 'will' 'fork',
+	newgame [;
+		give self ~shootable;
+	],
+	triggers [;
+		switch(self.hitcount) {
+		1: "~From your perspective, the way the ball bounces is just random.~";
+		2: "~From the ball's perspective, the way you time the flippers is random, and it is choosing how to bounce.~";
+		3: "~From the inside, it doesn't feel random, because you are the origin of the new information.~";
+		}
+	],
+	has ~shootable;
+
 Target	choicelock "choice lock" master_chamber
 	with
 	name 'axiom' 'choice' 'lock' 'aoc',
@@ -99,6 +135,7 @@ Target	choicelock "choice lock" master_chamber
 	newgame [;
 		self.lockready = 0;
 		self.hasball = 0;
+		give self shootable;
 	],
 	triggers [;
 		if(self.lockready == 0)
@@ -152,13 +189,12 @@ Prop	em "Enlightened Master" master_chamber
 			self.balls = 3;
 			self.points = 0;
 			skill.nudgecount = 0;
-			give choicelock shootable;
 			objectloop(x has gametarget) x.hitcount = 0;
 			objectloop(x has gametarget) x.newgame();
 			self.gamenumber++;
 			startdaemon(self);
 			switch(self.gamenumber) {
-			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! Are you ready to continue following the Path? LAUNCH, then just SHOOT whatever target you like. TARGETS shows what you can shoot currently. The bumpers are a good place to start.~";
+			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! LAUNCH, then just SHOOT whatever target you like. TARGETS shows what you can shoot currently. Examine a target to see percentages. NUDGE and CATCH can increase your accuracy. SHOOT BUMPERS is a good place to start practicing, each action increases your skill.~";
 			2: "~I'm glad you're trying again. Don't get discouraged, your skill is increasing with every shot. What's hard now will be easy later. Of course, I'll have some new challenges for you then!~";
 			3: "~We're starting to get to know each other well now, aren't we? I'd introduce myself, but I really have too many different names to try to share them all.~";
 			default: "~Sure, I'm ready to go again!~";

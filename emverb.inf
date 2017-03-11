@@ -77,10 +77,6 @@
 	"^You attempt the bind of ", (name) noun, " on top of ", (name) second, " but nothing interesting happens...";
 ];
 
-[ Bombsub;
-	"Not a good idea unless you are inside a videogame.";
-];
-
 [ Catchsub;
 	if(em.ingame == 0)
 		"You need to be playing Enlightened Master.";
@@ -120,16 +116,6 @@
 	"Clock story triggers set to off. No plot events will occur automatically. >clockon to reactivate.";
 ];
 
-[ Commentarysub;
-	if (commentary == false) {
-		print "Turning commentary on, enter >commentary again to deactivate.^";
-		commentary = true;
-		return true;
-	}
-	print "Turning commentary off.^";
-		commentary = false;
-];
-
 [ Contentsub;
 	"This game should be suitable for any player interested in its ideas.";
 ];
@@ -147,10 +133,6 @@
 
 [ Designsub;
 	"Thanks, and I hope you are enjoying the game.";
-];
-
-[ Dodgesub;
-	"It doesn't make sense to do that now.";
 ];
 
 [ Eastereggsub;
@@ -214,10 +196,6 @@
 
 [ Lunarsub;
 	"The Moon smiles down at you.";
-];
-
-[ Namespacesub;
-	print "Active binds:^";
 ];
 
 [ Nudgesub;
@@ -318,6 +296,14 @@
 	noun.triggers();
 ];
 
+[ Skillsub;
+	print "Current pinball skills:";
+	print "^Launch: ", skill.launch;
+	print "^Shoot: ", skill.shoot;
+	print "^Catch: ", skill.catch;
+	print "^Nudge: ", skill.nudge;
+];
+
 [ Sleepwaitsub;
 !	daynumber = daynumber + 1;
 	settime(1380, 60);
@@ -328,14 +314,6 @@
 	expertmode = false;
 	clockoff = false;
 	"Game puzzles and story set to standard difficulty. Automatic clock events on.";
-];
-
-[ Storysub;
-	"You aren't allowed to skip any further ahead in the storyline.";
-];
-
-[ Summarysub;
-	print "The full walkthrough has a complete move sequence for a 999 point game.^";
 ];
 
 [ Talksub;
@@ -387,16 +365,13 @@ Include "Grammar";
 Verb "about" *	-> About;
 Verb "bind"	* noun noun	-> Bind
 	* noun 'to'/'with'/'and'/'on'/'in' noun -> Bind;
-Verb "bomb" *	-> Bomb;
 Verb "catch" *	-> Catch;
 Verb "clockon" *	-> Clockon;
 Verb "clockoff" *	-> Clockoff;
-Verb "commentary" *	-> Commentary;
 Verb "content" *	-> Content;
 Verb "credits" *	-> Credits;
 Verb "dance" *	-> Dance;
 Verb "design" *	-> Design;
-Verb "dodge" * 	-> Dodge;
 Verb "easter" * 'egg'	-> Easteregg;
 Verb "exits" *	-> Exits;
 Verb "expert" *	-> Expert;
@@ -409,7 +384,6 @@ Verb "hint" *	-> Hint
 	* noun	-> Hint;
 Verb "launch" *	-> Launch;
 Verb "lunar" *	-> Lunar;
-Verb "namespace" "ns" *	-> Namespace;
 Verb "nudge" *	-> Nudge;
 Verb "pet" * noun	-> Pet;
 Verb "play" * noun	-> Play
@@ -417,12 +391,11 @@ Verb "play" * noun	-> Play
 Verb "plugh" *	-> Plugh;
 Verb "review" *	-> Review;
 Verb "ride" * noun	-> Ride;
-Verb "shoot" * noun	-> Shoot;
+Verb "shoot" "sh" * noun	-> Shoot;
+Verb "skill" "skills" *	-> Skill;
 Extend "sleep" replace *	-> Sleepwait;
 Verb "spin" = 'turn';
 Verb "standard" *	-> Standard;
-Verb "story" *	-> Story;
-Verb "summary" *	-> Summary;
 Verb "talk" * noun -> Talk
 	* 'to'/'with' noun -> Talk;
 Verb "targets" *	-> Targets;

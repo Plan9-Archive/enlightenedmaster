@@ -70,7 +70,6 @@ Include "VerbLib";
 
 Global clockoff = false;
 Global expertmode = false;
-Global commentary = false;
 Global daynumber = 0;
 Global roll = 0;
 Global x = 0;
