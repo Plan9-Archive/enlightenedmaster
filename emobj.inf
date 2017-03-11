@@ -194,7 +194,7 @@ Prop	em "Enlightened Master" master_chamber
 			self.gamenumber++;
 			startdaemon(self);
 			switch(self.gamenumber) {
-			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! LAUNCH, then just SHOOT whatever target you like. TARGETS shows what you can shoot currently. Examine a target to see percentages. NUDGE and CATCH can increase your accuracy. SHOOT BUMPERS is a good place to start practicing, each action increases your skill.~";
+			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! LAUNCH, then just SHOOT whatever target you like. TARGETS shows what you can shoot currently. Examine a target to see percentages. NUDGE and CATCH can increase your accuracy. SHOOT BUMPERS is a good place to start practicing, each action increases your SKILL.~";
 			2: "~I'm glad you're trying again. Don't get discouraged, your skill is increasing with every shot. What's hard now will be easy later. Of course, I'll have some new challenges for you then!~";
 			3: "~We're starting to get to know each other well now, aren't we? I'd introduce myself, but I really have too many different names to try to share them all.~";
 			default: "~Sure, I'm ready to go again!~";

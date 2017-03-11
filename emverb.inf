@@ -302,6 +302,7 @@
 	print "^Shoot: ", skill.shoot;
 	print "^Catch: ", skill.catch;
 	print "^Nudge: ", skill.nudge;
+	print "^";
 ];
 
 [ Sleepwaitsub;
