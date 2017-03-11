@@ -156,6 +156,44 @@
 	print "You speak the magic word, and you catch a glimpse of an ancient realm of college mainframe computers and 5 1/4 floppies...^";
 ];
 
+[ Randomtestsub a b c d e f g h i j;
+	a = 0;
+	b = 0;
+	c = 0;
+	d = 0;
+	e = 0;
+	f = 0;
+	g = 0;
+	h = 0;
+	i = 0;
+	j = 0;
+	print "Testing 10000 random numbers^";
+	for(x=0: x<10000: x++) {
+		roll=random(99);
+		if(roll <= 10)
+			a++;
+		if(roll > 10 && roll <= 20)
+			b++;
+		if(roll > 20 && roll <= 30)
+			c++;
+		if(roll > 30 && roll <= 40)
+			d++;
+		if(roll > 40 && roll <= 50)
+			e++;
+		if(roll > 50 && roll <= 60)
+			f++;
+		if(roll > 60 && roll <= 70)
+			g++;
+		if(roll > 70 && roll <= 80)
+			h++;
+		if(roll > 80 && roll <= 90)
+			i++;
+		if(roll > 90)
+			j++;
+	}
+	print a, " | ", b, " | ", c, " | ", d, " | ", e, " | ", f, " | ", g, " | ", h, " | ", j, "^";
+];			
+
 [ Reviewsub;
 	"A strange concept.";
 ];
@@ -379,6 +417,7 @@ Verb "pet" * noun	-> Pet;
 Verb "play" * noun	-> Play
 	* 'with' noun	-> Play;
 Verb "plugh" *	-> Plugh;
+Verb "randomtest" *	-> Randomtest;
 Verb "review" *	-> Review;
 Verb "ride" * noun	-> Ride;
 Verb "shoot" "sh" * noun	-> Shoot;

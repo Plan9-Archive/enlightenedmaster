@@ -181,13 +181,31 @@ Target	staircase "diagonalization staircase" master_chamber
 	with
 	name 'staircase' 'stairs' 'diagonal' 'diagonalization',
 	triggers [;
-		switch(self.hitcount){
+		switch(self.hitcount) {
 		1: "~Climbing the Diagonal Staircase is one of the first steps past the smallest infinity.~";
 		2: "~In any one-to-one mapping between the counting numbers and the reals, you can construct an unlisted real by making each digit N differ from the Nth digit of the Nth real.~";
 		3: "~Diagonalization is a special case of Cantor's proof showing that it is always impossible to construct a one-to-one mapping between the individual elements of a set and all possible multiple element subsets.~";
 		}
 	],
 	has ~shootable;
+
+Target	fountain "fiction fountain" master_chamber
+	with
+	name 'fiction' 'fountain',
+	risk 60,
+	difficulty 110,
+	triggers [;
+		switch(self.hitcount) {
+		1: "~Shoot into the fountain five times for one of my reality-warping minigames.~";
+		2: "~Real vs. Imaginary is one of the most abused and misleading dichotomies, don'cha know.~";
+		3: "~Usually its a sneaky way of justifying a value judgment, with the hidden premise that imaginary things aren't important.~";
+		4: "~I mean, maybe I'm imaginary in some senses, but the words I'm speaking are real, right? An imaginary machine that speaks real sentences, cool trick!~";
+		5: 	print "~Whee, that's your fifth hit! Get ready!~ The dot-matrix display begins to show an animation of you playing a pinball game. The scene zooms in on the dot-matrix display, and an infinite tunnel results. You feel yourself falling into it, and you accelerate toward a familiar shape: '>'^";
+			em.didthing = 0;
+			startdaemon(orchard);
+			playerto(orchard);
+		}
+	];
 
 !============================================================================
 ! The immobile prop objects
@@ -237,6 +255,17 @@ object	gear "set of climbing gear"
 	with
 	name 'climbing' 'gear' 'tools' 'rope' 'protection' 'bolts' 'cams' 'equipment' 'harness' 'screws',
 	description "A standard assortment of climbing equipment: harness, ropes, bolts, screws.";
+
+Decor	apple "golden apple" orchard
+	with
+	name 'golden' 'apple' 'apples' 'tree' 'trees',
+	description "Each apple has a 'K' symbol embossed into the gold.",
+	before [;
+		take:
+			stopdaemon(orchard);
+			print "~Yes, please take a souvenir of your visit. And I guess it's time to get back to your pinball game in progress!~^";
+			playerto(master_chamber);
+	];
 
 object	skill "player skills"
 	with

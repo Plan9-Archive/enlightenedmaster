@@ -105,4 +105,17 @@ Room	master_chamber "Chamber of the Enlightened Master"
 It's a pinball machine.",
 	e_to master_threshold;
 
-Scene	noscene "noscene";
+Scene	orchard "Golden Apple Orchard"
+	with
+	name 'orchard',
+	turn 0,
+	description "This is the orchard where the Golden Apples grow. The trees have a wild diversity of shapes and sizes, but each bears shiny metallic fruit.",
+	daemon [;
+		self.turn++;
+		switch(self.turn){
+		1: "^~I wanted you to see this place, I spent a lot of time here when I was growing up.~";
+		2: "^~Lazy summer afternoons playing tag with friends, lots of running in circles around the trees and occasionally into them.~";
+		3: "^~Anyway, I just wanted you to see this. Why don't you take an apple as a souvenir?~";
+		default: "^~Go ahead, TAKE APPLE.~";
+		}
+	];
