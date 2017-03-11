@@ -28,7 +28,7 @@ Target	lramp "left ramp" master_chamber
 	triggers [;
 		if((choicelock.lockready == 0) && (rramp.hitcount > 0)){
 			choicelock.lockready = 1;
-			"~Good job, the Infinity ramp has activated Axiom of Choice lock. That's a hard shot though.~";
+			"^~Good job, the Infinity ramp has activated Axiom of Choice lock. That's a hard shot though.~";
 		}
 	];
 
@@ -48,7 +48,7 @@ Target	rramp "right ramp" master_chamber
 	triggers [;
 		if((choicelock.lockready == 0) && (lramp.hitcount > 0)){
 			choicelock.lockready = 1;
-			"~Nicely played, the Infinity ramp has activated Axiom of Choice lock. That one's tricky so be careful.~";
+			"^~Nicely played, the Infinity ramp has activated Axiom of Choice lock. That one's tricky so be careful.~";
 		}
 	];
 
@@ -60,12 +60,20 @@ Target	magnet "forcing magnet" master_chamber
 	difficulty 125,
 	level 0,
 	triggers [;
-		if(self.level > 0)
-			return true;
-		if(choicelock.multicount > 0 && bumpers.hitcount >= bumpers.goal) {
-			em.points = em.points + 1000;
-			self.level++;
-			"~Wow! You got Induction on N, Axiom of Choice Multiball, AND you've hit the Forcing Magnet. That's a thousand point bonus for you.~";
+		switch(self.level) {
+		0:	if(entropyegg.broken == 1 && bumpers.hitcount >= bumpers.goal) {
+				em.points = em.points + 500;
+				self.level++;
+				"~Wow! You got Induction on N and broke the entropy egg, that's a five hundred point bonus for you.~";
+			}
+			"~Before I can reward you, complete the successor bumpers and break open the entropy egg before shooting the magnet again for your first bonus.~";
+		1:	if(choicelock.multicount > 0 && fountain.hitcount >= 5) {
+				em.points = em.points + 500;
+				self.level++;
+				"~Great work, you got Axiom of Choice multiball and visited a fiction through the fountain, that's another 500 extra points!~";
+			}
+			"~Dearie, lock two balls in the Axiom of Choice (shoot both sides of the ramp to activate it), get five hits on the fountain and shoot the magnet again for your next reward.~";
+		default: return true;
 		}
 	];
 
@@ -192,6 +200,7 @@ Target	staircase "diagonalization staircase" master_chamber
 Target	fountain "fiction fountain" master_chamber
 	with
 	name 'fiction' 'fountain',
+	value 35,
 	risk 60,
 	difficulty 110,
 	triggers [;
@@ -253,7 +262,7 @@ Prop	em "Enlightened Master" master_chamber
 
 object	gear "set of climbing gear"
 	with
-	name 'climbing' 'gear' 'tools' 'rope' 'protection' 'bolts' 'cams' 'equipment' 'harness' 'screws',
+	name 'set' 'climbing' 'gear' 'tools' 'rope' 'ropes' 'protection' 'bolts' 'cams' 'equipment' 'harness' 'screws',
 	description "A standard assortment of climbing equipment: harness, ropes, bolts, screws.";
 
 Decor	apple "golden apple" orchard
@@ -265,6 +274,10 @@ Decor	apple "golden apple" orchard
 			stopdaemon(orchard);
 			print "~Yes, please take a souvenir of your visit. And I guess it's time to get back to your pinball game in progress!~^";
 			playerto(master_chamber);
+			move apple to player;
+			return true;
+		drop:
+			"You want to hold onto it.";
 	];
 
 object	skill "player skills"
