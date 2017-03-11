@@ -85,7 +85,7 @@ Target	magnet "forcing magnet" master_chamber
 		3:	if(lramp.hitcount >= 3 && rramp.hitcount >= 3) {
 				em.points = em.points + 500;
 				self.level++;
-				"~Amazing! You've completed every table goal...are you ready for the endgame? I'm quivering with anticipation to see how you do.";
+				"~Amazing! You've completed every table goal...are you ready for the endgame? I'm quivering with anticipation to see how you do.~";
 			}
 			"~You're almost there. 3 hits each on the left and right ramp is your final table goal.~";
 		default: return true;
