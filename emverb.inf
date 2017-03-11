@@ -29,6 +29,7 @@
 	lookmode = 1;
 	location = base;
 	player.description = "You are a human being in search of the Enlightened Master.";
+	move gear to player;
 	settime(0,60);
 	print "^^You are finally nearing the end of your journey to the Enlightened Master.^^";
 	getenter();
@@ -77,34 +78,6 @@
 	"^You attempt the bind of ", (name) noun, " on top of ", (name) second, " but nothing interesting happens...";
 ];
 
-[ Catchsub;
-	if(em.ingame == 0)
-		"You need to be playing Enlightened Master.";
-	if(em.balllaunched == 0)
-		"You need to LAUNCH first.";
-	em.didthing = 1;
-	skill.catch++;
-	roll = random(100) + skill.luck + (skill.nudge * skill.nudgeflag);
-	skill.nudgeflag = 0;
-	skill.luck = 0;
-	if(roll < 20) {
-		em.balls--;
-		print "You fail the catch, and the ball drops between the flippers and leaves the playfield.^";
-		checkgame();
-		return true;
-	}
-	if(roll < 40) {
-		skill.luck = -10;
-		"You miss the catch and the ball bounces oddly, decreasing your luck on the next shot.^";
-	}
-	if(roll + skill.catch > 100) {
-		skill.luck = 35;
-		skill.catch++;
-		"You successfully catch the ball and it now rests in the angle between the flipper and guide rail. Your next shot will have substantially increased accuracy.";
-	}
-	skill.luck = 5;
-	"You fail the catch but the angle is good for your next shot.";
-];
 
 [ Clockonsub;
 	clockoff = false;
@@ -142,12 +115,6 @@
 	location.cant_go();
 ];
 
-[ Expertsub;
-	expertmode = true;
-	clockoff = true;
-	"Expert-level puzzles and story logic on. Automatic clock events off.";
-];
-
 [ Exploresub;
 	"You search the area, but find nothing not already described.";
 ];
@@ -173,45 +140,8 @@
 	"The maximum score is 999 points. Many of those points can be missed if certain optional actions are not performed before plot events.";
 ];
 
-[ Launchsub;
-	if(em.ingame == 0)
-		"You need to PLAY a new game first.";
-	if(em.balllaunched == 1)
-		"The ball has already been launched, SHOOT a target instead, CATCH, or NUDGE.";
-	em.didthing = 1;
-	roll = random(100) + skill.launch;
-	if(roll < 40) {
-		"The ball hits nothing on its way straight down the middle and out of play. ~Honey, that just ain't gonna cut it. I'm saving that ball, launch it again.~";
-	}
-	skill.launch++;
-	em.balllaunched = 1;
-	print em.balls, " balls remaining. ";
-	if(roll < 70) {
-		em.points = em.points + 10;
-		"The ball scores a 10 point launch bonus and heads toward your flippers. ~Okay, you're live!~";
-	}
-	em.points = em.points + 25;
-	"The ball scores a 25 point launch bonus and bounces into the playfield. ~Time to dance!~";
-];
-
 [ Lunarsub;
 	"The Moon smiles down at you.";
-];
-
-[ Nudgesub;
-	if(em.ingame == 0)
-		"You need to be playing Enlightened Master.";
-	if(em.balllaunched == 0)
-		"You need to LAUNCH first.";
-	if(skill.nudgeflag == 1)
-		"You have already nudged for the next shot.";
-	if(skill.nudgecount > 10)
-		"Your nudging muscles are fatigued, no more nudging this game.";
-	em.didthing = 1;
-	skill.nudgecount++;
-	skill.nudge++;
-	skill.nudgeflag = 1;
-	"You brace yourself to give the Master a helpful nudge for the next action.";
 ];
 
 [ Petsub;
@@ -232,6 +162,90 @@
 
 [ Ridesub;
 	"You can't ride that.";
+];
+
+[ Skillsub;
+	print "Current pinball skills:";
+	print "^Launch: ", skill.launch;
+	print "^Shoot: ", skill.shoot;
+	print "^Catch: ", skill.catch;
+	print "^Nudge: ", skill.nudge;
+	print "^";
+];
+
+[ Sleepwaitsub;
+!	daynumber = daynumber + 1;
+	settime(1380, 60);
+	print "You take a long nap.^";
+];
+
+[ Talksub;
+	if(noun hasnt animate)
+		"The soundwaves of your voice bounce off the ", (name) noun, " affecting its molecular structure in subtle ways.";
+	"Your words go unanswered.";
+];
+
+[ Targetssub;
+	objectloop(x has shootable) print (name) x, "^";
+];
+
+[ Titlesub;
+	"Alternate titles:";
+];
+
+[ Usesub;
+	if(noun hasnt animate)
+		"Either the ", (name) noun, " can't be used, or you need to find a more specific verb.";
+	"To interact with characters, try talk to NAME, ask NAME about THING, tell NAME about THING, or give THING to NAME.";
+];
+
+[ Verblistsub;
+	"n s e w ne nw se sw u d in out, examine, take, drop, give, talk to, tell, use, play";
+];
+
+[ Walkthroughsub;
+];
+
+[ Winsub;
+	deadflag = 2;
+	"Sure, you win! Success is for you to define. If you want to keep playing, just >undo.";
+];
+
+[ Xyzzysub;
+	print "There is a trans-dimensional short-circuit of interactive fiction tradition, and you catch a brief glimpse of a brick building near a stream and a metal grate before you blink and find yourself...^";
+	playerto(master_chamber);
+];
+
+!============================================================================
+! Pinball Actions
+
+[ Catchsub;
+	if(em.ingame == 0)
+		"You need to be playing Enlightened Master.";
+	if(em.balllaunched == 0)
+		"You need to LAUNCH first.";
+	em.didthing = 1;
+	skill.catch++;
+	roll = random(99) + skill.luck + (skill.nudge * skill.nudgeflag);
+	skill.nudgeflag = 0;
+	skill.luck = 0;
+	if(roll <= 20) {
+		em.balls--;
+		print "You fail the catch, and the ball drops between the flippers and leaves the playfield.^";
+		checkgame();
+		return true;
+	}
+	if(roll <= 40) {
+		skill.luck = -10;
+		"You miss the catch and the ball bounces oddly, decreasing your luck on the next shot.^";
+	}
+	if(roll + skill.catch > 100) {
+		skill.luck = 35;
+		skill.catch++;
+		"You successfully catch the ball and it now rests in the angle between the flipper and guide rail. Your next shot will have substantially increased accuracy.";
+	}
+	skill.luck = 5;
+	"You fail the catch but the angle is good for your next shot.";
 ];
 
 [ Flipsub;
@@ -260,6 +274,44 @@
 	};
 ];
 
+[ Launchsub;
+	if(em.ingame == 0)
+		"You need to PLAY a new game first.";
+	if(em.balllaunched == 1)
+		"The ball has already been launched, SHOOT a target instead, CATCH, or NUDGE.";
+	em.didthing = 1;
+	skill.launch++;
+	em.balllaunched = 1;
+	print em.balls, " balls remaining. ";
+	roll = random(99) + skill.launch;
+	if(roll <= 40) {
+		skill.luck = skill.luck - 5;
+		"The ball hits nothing on its way onto the playfield and approaches your flippers at an awkard angle.";
+	}
+	if(roll <= 70) {
+		em.points = em.points + 10;
+		"The ball scores a 10 point launch bonus and heads toward your flippers. ~Okay, you're live!~";
+	}
+	em.points = em.points + 25;
+	"The ball scores a 25 point launch bonus and bounces into the playfield. ~Time to dance!~";
+];
+
+[ Nudgesub;
+	if(em.ingame == 0)
+		"You need to be playing Enlightened Master.";
+	if(em.balllaunched == 0)
+		"You need to LAUNCH first.";
+	if(skill.nudgeflag == 1)
+		"You have already nudged for the next shot.";
+	if(skill.nudgecount > 10)
+		"Your nudging muscles are fatigued, no more nudging this game.";
+	em.didthing = 1;
+	skill.nudgecount++;
+	skill.nudge++;
+	skill.nudgeflag = 1;
+	"You brace yourself to give the Master a helpful nudge for the next action.";
+];
+
 [ Shootsub;
 	if(noun hasnt gametarget)
 		"You can only shoot objects in the pinball game.";
@@ -271,91 +323,29 @@
 		"You need to LAUNCH first.";
 	em.didthing = 1;
 	skill.shoot++;
-	roll = random(100) + skill.luck + (skill.nudge * skill.nudgeflag);
+	roll = random(99) + skill.luck + (skill.nudge * skill.nudgeflag);
 	skill.nudgeflag = 0;
 	skill.luck = 0;
-	if(roll < 10) {
+	if(roll <= 10) {
 		em.balls--;
 		print "You miss, and the ball takes an unlucky bounce down the left outlane.^";
 		checkgame();
 		return true;
 	}
-	if(roll + skill.shoot < noun.risk) {
+	if(roll + skill.shoot <= noun.risk) {
 		em.balls--;
 		print "You miss the shot and the ball drains straight down the middle.^";
 		checkgame();
 		return true;
 	}
-	if(roll < 20) {
+	if(roll <= 20) {
 		skill.luck = skill.luck + 10;
 		"You miss the shot but the ball takes a nice bounce, increasing your luck on the next shot.^";
 	}
-	if(roll + skill.shoot < noun.difficulty)
+	if(roll + skill.shoot <= noun.difficulty)
 		"You miss your target, but the ball returns toward your flippers.";
 	noun.hit();
 	noun.triggers();
-];
-
-[ Skillsub;
-	print "Current pinball skills:";
-	print "^Launch: ", skill.launch;
-	print "^Shoot: ", skill.shoot;
-	print "^Catch: ", skill.catch;
-	print "^Nudge: ", skill.nudge;
-	print "^";
-];
-
-[ Sleepwaitsub;
-!	daynumber = daynumber + 1;
-	settime(1380, 60);
-	print "You take a long nap.^";
-];
-
-[ Standardsub;
-	expertmode = false;
-	clockoff = false;
-	"Game puzzles and story set to standard difficulty. Automatic clock events on.";
-];
-
-[ Talksub;
-	if(noun hasnt animate)
-		"The soundwaves of your voice bounce off the ", (name) noun, " affecting its molecular structure in subtle ways.";
-	"Your words go unanswered.";
-];
-
-[ Targetssub;
-	objectloop(x has shootable) print (name) x, "^";
-];
-
-[ Titlesub;
-	"Alternate titles:";
-];
-
-[ Usesub;
-	if(noun hasnt animate)
-		"Either the ", (name) noun, " can't be used, or you need to find a more specific verb.";
-	"To interact with characters, try talk to NAME, ask NAME about THING, tell NAME about THING, or give THING to NAME.";
-];
-
-[ Verblistsub;
-	"n s e w ne nw se sw u d in out, examine, take, drop, give, talk to, tell, use, play";
-];
-
-[ Visitsub;
-	"You don't have anywhere to visit right now.";
-];
-
-[ Walkthroughsub;
-];
-
-[ Winsub;
-	deadflag = 2;
-	"Sure, you win! Success is for you to define. If you want to keep playing, just >undo.";
-];
-
-[ Xyzzysub;
-	print "There is a trans-dimensional short-circuit of interactive fiction tradition, and you catch a brief glimpse of a brick building near a stream and a metal grate before you blink and find yourself...^";
-	playerto(master_chamber);
 ];
 
 !============================================================================
@@ -375,7 +365,6 @@ Verb "dance" *	-> Dance;
 Verb "design" *	-> Design;
 Verb "easter" * 'egg'	-> Easteregg;
 Verb "exits" *	-> Exits;
-Verb "expert" *	-> Expert;
 Verb "explore" *	-> Explore;
 Verb "flip" * 	-> Flip;
 Verb "footnote" * number	-> Footnote;
@@ -396,14 +385,12 @@ Verb "shoot" "sh" * noun	-> Shoot;
 Verb "skill" "skills" *	-> Skill;
 Extend "sleep" replace *	-> Sleepwait;
 Verb "spin" = 'turn';
-Verb "standard" *	-> Standard;
 Verb "talk" * noun -> Talk
 	* 'to'/'with' noun -> Talk;
 Verb "targets" *	-> Targets;
 Verb "titles" *	-> Title;
 Verb "use" * noun	-> Use;
 Verb "verblist" *	-> Verblist;
-Verb "visit" * topic	-> Visit;
 Verb "walkthrough" *	-> Walkthrough;
 Verb "win" *	-> Win;
 Verb "xyzzy" *	-> Xyzzy;

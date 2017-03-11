@@ -69,7 +69,6 @@ Include "VerbLib";
 ! Global variables
 
 Global clockoff = false;
-Global expertmode = false;
 Global daynumber = 0;
 Global roll = 0;
 Global x = 0;

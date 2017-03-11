@@ -1,6 +1,12 @@
 !============================================================================
 ! The room decorations
 
+Decor	mountain "mountain"
+	with
+	name 'mountain' 'rock' 'rocks' 'ice' 'snow' 'slabs' 'boulders' 'wall' 'cliff' 'ridge' 'overhang' 'crag' 'crags',
+	found_in base icefall camp_low snow_hill boulders middle_wall camp_mid exposed_ridge ice_chimney traverse camp_high high_wall final_approach summit,
+	description "The Highest Mountain resembles a mountain, but bigger. Every type of high-altitude hazard is found on the long climb from its base to the summit.";
+
 Decor	instructions "instructions" master_chamber
 	with
 	name 'card' 'instruction' 'instructions',
@@ -9,6 +15,16 @@ Decor	instructions "instructions" master_chamber
 Target	lramp "left ramp" master_chamber
 	with
 	name 'left' 'ramp',
+	hit [;
+		self.hitcount++;
+		em.points = em.points + self.value;
+		print "Left ramp hit ", self.hitcount, " +", self.value, " points. ";
+		switch(self.hitcount){
+		1: "~People say its impossible to reach infinity, but what if you're already there?~";
+		2: "~Paradoxes happen when self-reference becomes pathological, infinities happen when it is consturctive.~";
+		3: "~So yeah, I admit it - I'm the one who shaved the barber.~";
+		};
+	],
 	triggers [;
 		if((choicelock.lockready == 0) && (rramp.hitcount > 0)){
 			choicelock.lockready = 1;
@@ -19,6 +35,16 @@ Target	lramp "left ramp" master_chamber
 Target	rramp "right ramp" master_chamber
 	with
 	name 'right' 'ramp',
+	hit [;
+		self.hitcount++;
+		em.points = em.points + self.value;
+		print "Right ramp hit ", self.hitcount, " +", self.value, " points. ";
+		switch(self.hitcount){
+		1: "~The beginning of the journey is just as satisfying as the end.~";
+		2: "~Like the art? I learned to juggle back in my days on the road.~";
+		3: "~Someday we will share a nice cup of infini-tea.~";
+		};
+	],
 	triggers [;
 		if((choicelock.lockready == 0) && (lramp.hitcount > 0)){
 			choicelock.lockready = 1;
@@ -206,6 +232,11 @@ Prop	em "Enlightened Master" master_chamber
 		self.gameturns++;
 		emchat();
 	];
+
+object	gear "set of climbing gear"
+	with
+	name 'climbing' 'gear' 'tools' 'rope' 'protection' 'bolts' 'cams' 'equipment' 'harness' 'screws',
+	description "A standard assortment of climbing equipment: harness, ropes, bolts, screws.";
 
 object	skill "player skills"
 	with
