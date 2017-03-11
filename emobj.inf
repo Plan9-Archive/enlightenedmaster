@@ -59,6 +59,9 @@ Target	magnet "forcing magnet" master_chamber
 	risk 65,
 	difficulty 125,
 	level 0,
+	newgame [;
+		self.level = 0;
+	],
 	triggers [;
 		switch(self.level) {
 		0:	if(entropyegg.broken == 1 && bumpers.hitcount >= bumpers.goal) {
@@ -73,6 +76,18 @@ Target	magnet "forcing magnet" master_chamber
 				"~Great work, you got Axiom of Choice multiball and visited a fiction through the fountain, that's another 500 extra points!~";
 			}
 			"~Dearie, lock two balls in the Axiom of Choice (shoot both sides of the ramp to activate it), get five hits on the fountain and shoot the magnet again for your next reward.~";
+		2:	if(staircase.hitcount >= 3 && fork.hitcount >= 3) {
+				em.points = em.points + 500;
+				self.level++;
+				"~You are really working the table now! You've climbed the staircase and taken the fork.~";
+			}
+			"~Keep the flow going, get 3 hits each on the staircase and fork to setup the next magnet bonus.~";
+		3:	if(lramp.hitcount >= 3 && rramp.hitcount >= 3) {
+				em.points = em.points + 500;
+				self.level++;
+				"~Amazing! You've completed every table goal...are you ready for the endgame? I'm quivering with anticipation to see how you do.";
+			}
+			"~You're almost there. 3 hits each on the left and right ramp is your final table goal.~";
 		default: return true;
 		}
 	];
