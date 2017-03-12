@@ -324,7 +324,7 @@
 	roll = random(99) + skill.launch;
 	if(roll <= 40) {
 		skill.luck = skill.luck - 5;
-		"The ball hits nothing on its way onto the playfield and approaches your flippers at an awkard angle.";
+		"The ball hits nothing on its way onto the playfield and approaches your flippers at an awkward angle.";
 	}
 	if(roll <= 70) {
 		em.points = em.points + 10;
@@ -343,7 +343,7 @@
 		"You have already nudged for the next shot.";
 	if(skill.nudgecount > 10)
 		"Your nudging muscles are fatigued, no more nudging this game.";
-	em.didthing = 1;
+!	em.didthing = 1;
 	skill.nudgecount++;
 	skill.nudge++;
 	skill.nudgeflag = 1;
