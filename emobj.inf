@@ -105,7 +105,7 @@ Target	bumpers "bumpers" master_chamber
 		self.goal = 30;
 	],
 	hit [;
-		self.bounces = random(10);
+		self.bounces = random(15);
 		self.hitcount = self.hitcount + self.bounces;
 		em.points = em.points + (self.bounces * self.value);
 		print "The ball gets ", self.bounces, " hits in the successor bumpers for ", self.bounces * self.value, " points.^";
@@ -121,9 +121,14 @@ Target	bumpers "bumpers" master_chamber
 		7: "^~That's my favorite number of bumper hits. Something about 7 just does it for me.~";
 		8: "^~With 8, I see the vertexes of a cube. It's ok if its just a stop sign for you.~";
 		9: "^~My friend Glenda says the space of names is richer than numbers, but I think it's equivalent.~";
-		10: "^~That's an optimum result when it comes to bumpin' the successors.~";
+		10: "^~I felt all ten of those.~";
+		11: "^~I don't need to sleep, but I still count elevyn flying sheep.~";
+		12: "^~If you succeed in life at all things like you shoot successor bumpers you are lucky indeed.~";
+		13: "^~That's good luck for all of us here in this cave.~";
+		14: "^~Looks like you're going to have everything finished off lickety-split.~";
+		15: "^~That's an optimum result when it comes to bumpin' the successors.~";
 		};
-	],		
+	],
 	triggers [;
 		if(self.value == 2 && self.hitcount > 15){
 			self.value = 4;
