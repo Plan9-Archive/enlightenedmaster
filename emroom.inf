@@ -119,3 +119,35 @@ Scene	orchard "Golden Apple Orchard"
 		default: "^~Go ahead, TAKE APPLE.~";
 		}
 	];
+
+Scene	highway "Somewhere on the Highway, driving alone"
+	with
+	name 'highway',
+	travel 0,
+	turn 0,
+	description "~I was driving at random, tired of the small town I had been working in, taking myself to a different small town. I felt like a boat floating down a black river of highway, watched over by the moon.~",
+	daemon [;
+		self.turn++;
+		if(self.turn > 10) {
+			playerto(master_chamber);
+			"~Thanks for sharing that memory with me, time to get back to the game!~";
+		}
+		if(self.turn > 2 && self.travel == 0)
+			"All you can do is travel whatever direction you wish.";
+	],
+	cant_go [;
+		self.travel++;
+		switch(self.travel) {
+		1: "~I remember the way the forest sometimes felt like a comforting blanket when it wrapped itself around the road.~";
+		2: "~Those hilly back-roads, nothing to see except trees and an occasional mailbox.~";
+		3: "~Rolling slowly through a small town, quiet and dark except for the neon glow of a beer sign in a corner tavern.~";
+		4: "~Sometimes, the distant sound of a train whistle floating on the night air.~";
+		5: "~Once that feeling got deep enough inside me, it just stayed, even in the midst of hectic shifts at work.~";
+		6: "~Farmhouses in the darkness, cornfields, and more cornfields.~";
+		7: "~Up onto a larger highway, smoother, faster, abstract correspondence of distance and time.~";
+		8: "~Still looking for the next Right Place to be, to hear more stories, to understand the big picture by fading into its background.~";
+		9: "~Across the big river, lattice of steel beams strobing by in the headlights, the smell of moving water.~";
+		10: "~Silhouettes of crows on a telephone wire, watching the intersection as you pass through.~";
+		11: "~Slowing the car to a crawl on an empty stretch of road, rolling the windows all the way down to smell the air and hear the buzz of the crickets.~";
+		}
+	];

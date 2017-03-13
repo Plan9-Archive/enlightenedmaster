@@ -23,6 +23,7 @@ Target	lramp "left ramp" master_chamber
 		1: "~People say its impossible to reach infinity, but what if you're already there?~";
 		2: "~Paradoxes happen when self-reference becomes pathological, infinities happen when it is consturctive.~";
 		3: "~So yeah, I admit it - I'm the one who shaved the barber.~";
+		default: "~Whoosh!~";
 		};
 	],
 	triggers [;
@@ -43,6 +44,7 @@ Target	rramp "right ramp" master_chamber
 		1: "~The beginning of the journey is just as satisfying as the end.~";
 		2: "~Like the art? I learned to juggle back in my days on the road.~";
 		3: "~Someday we will share a nice cup of infini-tea.~";
+		default: "~ZOOM!~";
 		};
 	],
 	triggers [;
@@ -122,7 +124,7 @@ Target	bumpers "bumpers" master_chamber
 		8: "^~With 8, I see the vertexes of a cube. It's ok if its just a stop sign for you.~";
 		9: "^~My friend Glenda says the space of names is richer than numbers, but I think it's equivalent.~";
 		10: "^~I felt all ten of those.~";
-		11: "^~I don't need to sleep, but I still count elevyn flying sheep.~";
+		11: "^~I don't need to sleep, but I still count eleven flying sheep.~";
 		12: "^~If you succeed in life at all things like you shoot successor bumpers you are lucky indeed.~";
 		13: "^~That's good luck for all of us here in this cave.~";
 		14: "^~Looks like you're going to have everything finished off lickety-split.~";
@@ -225,14 +227,17 @@ Target	fountain "fiction fountain" master_chamber
 	difficulty 110,
 	triggers [;
 		switch(self.hitcount) {
-		1: "~Shoot into the fountain five times for one of my reality-warping minigames.~";
-		2: "~Real vs. Imaginary is one of the most abused and misleading dichotomies, don'cha know.~";
-		3: "~Usually its a sneaky way of justifying a value judgment, with the hidden premise that imaginary things aren't important.~";
-		4: "~I mean, maybe I'm imaginary in some senses, but the words I'm speaking are real, right? An imaginary machine that speaks real sentences, cool trick!~";
-		5: 	print "~Whee, that's your fifth hit! Get ready!~ The dot-matrix display begins to show an animation of you playing a pinball game. The scene zooms in on the dot-matrix display, and an infinite tunnel results. You feel yourself falling into it, and you accelerate toward a familiar shape: '>'^";
+		1: "~Shoot into the fountain for one of my reality-warping minigames.~";
+		2: 	print "~Whee, get ready!~ The dot-matrix display begins to show an animation of you playing a pinball game. The scene zooms in on the dot-matrix display, and an infinite tunnel results. You feel yourself falling into it, and you accelerate toward a familiar shape: '>'^";
 			em.didthing = 0;
 			startdaemon(orchard);
 			playerto(orchard);
+		3: print "~Real vs. Imaginary is one of the most abused and misleading dichotomies, don'cha know.~ Once again you find yourself drawn into the video display toward the '>'^";
+			em.didthing = 0;
+			startdaemon(highway);
+			playerto(highway);
+		4: "~Usually its a sneaky way of justifying a value judgment, with the hidden premise that imaginary things aren't important.~";
+		5: "~I mean, maybe I'm imaginary in some senses, but the words I'm speaking are real, right? An imaginary machine that speaks real sentences, cool trick!~";
 		}
 	];
 

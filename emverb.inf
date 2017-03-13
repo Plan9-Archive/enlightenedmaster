@@ -227,6 +227,18 @@
 	objectloop(x has shootable) print (name) x, "^";
 ];
 
+[ Testsub;
+	x = "wompit";
+	if(x == "wompit")
+		"Yeah thats a wompit";
+	switch(x){
+		1: "switched a wompit";
+	}
+	print x;
+	print "|^";
+	print (string) x;
+];
+
 [ Titlesub;
 	"Alternate titles:";
 ];
@@ -427,6 +439,7 @@ Verb "spin" = 'turn';
 Verb "talk" * noun -> Talk
 	* 'to'/'with' noun -> Talk;
 Verb "targets" *	-> Targets;
+Verb "test" *	-> Test;
 Verb "titles" *	-> Title;
 Verb "use" * noun	-> Use;
 Verb "verblist" *	-> Verblist;
