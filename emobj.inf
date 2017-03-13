@@ -77,7 +77,7 @@ Target	magnet "forcing magnet" master_chamber
 				self.level++;
 				"~Great work, you got Axiom of Choice multiball and visited a fiction through the fountain, that's another 500 extra points!~";
 			}
-			"~Dearie, lock two balls in the Axiom of Choice (shoot both sides of the ramp to activate it), get five hits on the fountain and shoot the magnet again for your next reward.~";
+			"~Lock two balls in the Axiom of Choice (shoot both sides of the ramp to activate it), get five hits on the fountain and shoot the magnet again for your next reward.~";
 		2:	if(staircase.hitcount >= 3 && fork.hitcount >= 3) {
 				em.points = em.points + 500;
 				self.level++;

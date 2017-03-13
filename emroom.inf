@@ -130,6 +130,7 @@ Scene	highway "Somewhere on the Highway, driving alone"
 		self.turn++;
 		if(self.turn > 10) {
 			playerto(master_chamber);
+			stopdaemon(self);
 			"~Thanks for sharing that memory with me, time to get back to the game!~";
 		}
 		if(self.turn > 2 && self.travel == 0)
