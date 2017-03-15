@@ -16,9 +16,18 @@ Room	icefall "In the midst of a treacherous icefall"
 
 Room	camp_low "Campsite, Low Altitude"
 	with
+	camped 0,
 	description "A sheltered overhang provides space for the lowest campsite on the flanks of the mountain.",
-	d_to icefall,
-	u_to snow_hill;
+	before [;
+		camp:	self.camped = 1;
+				"You set up your tent and crawl inside. Despite your fatigue, it takes you awhile to fall asleep, as the anticipation is electric within you.";
+	],
+	u_to [;
+		if (self.camped == 0)
+			"You need to CAMP and continue up the mountain tomorrow.";
+		return snow_hill;
+	],
+	d_to icefall;
 
 Room	snow_hill "Long sloped snowfield"
 	with
@@ -40,9 +49,18 @@ Room	middle_wall "Near-vertical wall"
 
 Room	camp_mid "Campsite, Middle Altitude"
 	with
+	camped 0,
 	description "A broad shelf of rock above the cliff is a suitable site for the mid-level campsite.",
-	d_to middle_wall,
-	u_to exposed_ridge;
+	before [;
+		camp:	self.camped = 1;
+				"You set up your tent and crawl inside. You eat a cup of cous-cous and try to keep your mind clear despite your cold and aching body.";
+	],
+	u_to [;
+		if (self.camped == 0)
+			"You need to CAMP and continue up the mountain tomorrow.";
+		return exposed_ridge;
+	],
+	d_to middle_wall;
 
 Room	exposed_ridge "Exposed ridge"
 	with
@@ -64,9 +82,18 @@ Room	traverse "Horizontal traverse"
 
 Room	camp_high "Campsite, High Altitude"
 	with
+	camped 0,
 	description "There is no comfort here save a patch of snow just wide enough to pitch a tent. The wind howls and moans ceaselessly. The view, however, is staggering. The other mountains in the range, tall as they are, are now far below you.",
-	d_to traverse,
-	u_to high_wall;
+	before [;
+		camp:	self.camped = 1;
+				"You set up your tent and crawl inside. Tomorrow, you think as you sink into a restless, low-oxygen sleep, tomorrow is the day.";
+	],
+	u_to [;
+		if (self.camped == 0)
+			"You need to CAMP and continue up the mountain tomorrow.";
+		return high_wall;
+	],
+	d_to traverse;
 
 Room	high_wall "High wall, summit approach"
 	with

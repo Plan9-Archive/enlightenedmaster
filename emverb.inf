@@ -78,6 +78,9 @@
 	"^You attempt the bind of ", (name) noun, " on top of ", (name) second, " but nothing interesting happens...";
 ];
 
+[ Campsub;
+	"There isn't a good place to camp here.";
+];
 
 [ Clockonsub;
 	clockoff = false;
@@ -406,6 +409,7 @@ Include "Grammar";
 Verb "about" *	-> About;
 Verb "bind"	* noun noun	-> Bind
 	* noun 'to'/'with'/'and'/'on'/'in' noun -> Bind;
+Verb "camp" *	-> Camp;
 Verb "catch" *	-> Catch;
 Verb "clockon" *	-> Clockon;
 Verb "clockoff" *	-> Clockoff;
