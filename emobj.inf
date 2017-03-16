@@ -241,6 +241,38 @@ Target	fountain "fiction fountain" master_chamber
 		}
 	];
 
+Target	carousel "communication carousel" master_chamber
+	with
+	name 'communication' 'comm' 'carousel',
+	value 20,
+	risk 45,
+	difficulty 90,
+	triggers [;
+		switch(self.hitcount) {
+		1: "~How you communicate and interact with others is where enlightenment is most valuable, and meets its hardest tests.~";
+		2: "~I admit I'm maybe not in a position to talk much about normal human interaction, but still.~";
+		3: "~It's pretty easy to feel calm oneness with the transfinite moment meditating in the forest, what about when you're sleepless, rushing to stay on time, and someone is rude to you?~";
+		4: "~Can you feel the natural and authentic emotion without being controlled by it, without reacting from a place of anger and keeping the wheel of karma spinning?~";
+		5: "~Preserving your freedom of action, protecting it even from your own emotions. Who is enlightened? One who can choose to wait to speak or act until calm within.~";
+		}
+	];
+
+Target	electro "electro accelerator" master_chamber
+	with
+	name 'electro' 'accelerator' 'accel',
+	value 50,
+	difficulty 120,
+	risk 65,
+	triggers [;
+		switch(self.hitcount) {
+		1: "~I actually think all the non-attachment and calmness stuff gets overplayed.~";
+		2: "~I guess it's because to get started, you have to get the incorrect harmful overreactions under control first.~";
+		3: "~But intensity and passion aren't bad, they aren't to be avoided. Sometimes they are exactly what is appropriate.~";
+		4: "~Letting go of attachment doesn't mean not feeling love, not caring about things. Rather, it means that we can love better if we are not controlled by the fear that makes us try to control others.~";
+		5: "~Similarly with creative work. The songbird sings because that is its nature, not to create a better song than any bird has ever sung before.~";
+		}
+	];
+
 !============================================================================
 ! The immobile prop objects
 
@@ -317,6 +349,4 @@ object	skill "player skills"
 	luck 0,
 	nudgeflag 0,
 	nudgecount 0;
-
-
 

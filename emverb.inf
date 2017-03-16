@@ -14,6 +14,8 @@
 ];
 
 [ Timepasses;
+	if (em.ingame)
+		score = em.points;
 	if (clockoff == true)
 		return true;
 	if (the_time == 0){
@@ -27,6 +29,7 @@
 
 [ Initialise;
 	lookmode = 1;
+	notify_mode = false;
 	location = base;
 	player.description = "You are a human being in search of the Enlightened Master.";
 	move gear to player;
