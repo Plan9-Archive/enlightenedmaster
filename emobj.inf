@@ -289,6 +289,56 @@ Target	spring "time spring" master_chamber
 		}
 	];
 
+Target	cardinal "large cardinal" master_chamber
+	with
+	name 'large' 'cardinal',
+	value 65,
+	difficulty 140,
+	risk 70,
+	triggers [;
+		switch(self.hitcount) {
+		1: "~Inaccessible cardinals are near the base of the large cardinal hierarchy. They stand in relation to the ordinary infinities as the first infinity stands in relation to finite numbers.~";
+		2: "~Measurable cardinals are the critical point of an embedding of full universe of sets to a transitive class. If a measurable cardinal exists, the universe of sets is larger than the constructible universe.~";
+		3: "~Extendible cardinals can be the critical point of embeddings of an initial segment of the universe of the sets. No matter how large an initial segment we choose, the embedding generated will have the extendible critical point above the chosen ordinal of the initial segment.~";
+		4: "~Rank-into-rank cardinals are near the top of the hierarchy, relying on the strongest axioms we have not found to be inconsistent. A rank-into-rank is the critical point of an embedding of a transfinite initial segment of the universe of sets into itself.~";
+		5: "~The Kunen Inconsistency is the boundary of paradox. There can be no embedding of the full universe of sets to itself. At some point, our axioms become too strong, and lead to inconsistency.~";
+		}
+	];
+
+Target	popups "principle popups" master_chamber
+	with
+	name 'principle' 'popups' 'pop',
+	value 5,
+	risk 55,
+	difficulty 85,
+	bounces 0,
+	goal 30,
+	newgame [;
+		self.goal = 30;
+	],
+	hit [;
+		self.bounces = random(10);
+		self.hitcount = self.hitcount + self.bounces;
+		em.points = em.points + (self.bounces * self.value);
+		print "The ball gets ", self.bounces, " hits on the principle popups for ", self.bounces * self.value, " points.^";
+!		if(self.hitcount < self.goal)
+!			print self.goal - self.hitcount, " more hits to reach Induction on N.^";
+		switch(self.bounces){
+		1: "^~Keeping your awareness centered in the moment.~";
+		2: "^~It is natural to experience and act upon desires, but avoid attachment to them.~";
+		3: "^~Compassion for all experiencing beings.~";
+		4: "^~There are physical, mathematical, and imaginative multiverses.~";
+		5: "^~Information replicates ubiquitously.~";
+		6: "^~The transfinite is manifest in the nature of our conscious experience.~";
+		7: "^~Enlightenment is the freedom to diagonalize out of your own symbol-system.~";
+		8: "^~Free will is the transfinite aspect of the self.~";
+		9: "^~New information entering the universe inherently appears as randomness to external observers.~";
+		10: "^~Naming allows a set of symbol binds to select a universe.~";
+		};
+	],
+	triggers [;
+	];
+
 !============================================================================
 ! The immobile prop objects
 
