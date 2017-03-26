@@ -114,6 +114,10 @@
 	"Thanks, and I hope you are enjoying the game.";
 ];
 
+[ Drivesub;
+	<<go n_obj>>;
+];
+
 [ Eastereggsub;
 ];
 
@@ -420,6 +424,7 @@ Verb "content" *	-> Content;
 Verb "credits" *	-> Credits;
 Verb "dance" *	-> Dance;
 Verb "design" *	-> Design;
+Verb "drive" * -> Drive;
 Verb "easter" * 'egg'	-> Easteregg;
 Verb "exits" *	-> Exits;
 Verb "explore" *	-> Explore;

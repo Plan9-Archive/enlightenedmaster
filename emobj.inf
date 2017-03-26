@@ -407,11 +407,8 @@ object	skill "player skills"
 	with
 	catch 10,
 	shoot 20,
-	tilt 10,
 	nudge 4,
 	launch 25,
-	multi 20,
-	grit 15,
 	luck 0,
 	nudgeflag 0,
 	nudgecount 0;

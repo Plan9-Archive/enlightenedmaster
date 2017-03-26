@@ -63,7 +63,7 @@ Object  LibraryMessages
 		if (lm_n == 39)
 			"This game world does not provide that level of detail.";
 	];
-Include "VerbLib";
+Include "verblib";
 
 !============================================================================
 ! Global variables

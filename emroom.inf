@@ -179,3 +179,25 @@ Scene	highway "Somewhere on the Highway, driving alone"
 		11: "~Slowing the car to a crawl on an empty stretch of road, rolling the windows all the way down to smell the air and hear the buzz of the crickets.~";
 		}
 	];
+
+Scene	festival "At a music festival, about to go onstage"
+	with
+	name 'festival',
+	turn 0,
+	description "~I was at the Michigan Witch-Again pagan music festival, doing my magic-and-philosophy act opening for Climbing the Waltz.~",
+	daemon [;
+		self.turn++;
+		if(self.turn > 10) {
+			playerto(master_chamber);
+			stopdaemon(self);
+			"~Thanks for sharing that memory with me, time to get back to the game!~";
+		}
+		switch(self.turn) {
+		1: "~Outdoor shows at summer festivals were the best part of my time as a stage performer.~";
+		2: "~I'd wander through the parking lot and camping areas beforehand, juggling a pair of apples with my right hand and making a coin vanish and reappear with my left.~";
+		3: "~I had a pretty good line of patter I'd deliver as I was wandering. 'In an hour on stage, you will see reality taken apart and put back together through the power of Logic.'~";
+		4: "~'Learn that the infinity of stars in the sky is a tiny number and to change your universe with forcing extensions.'~";
+		5: "~'You will dance along the edge of the cliffs of paradox and see the full length of the mirror-tunnel of recursion.'~";
+		}
+	];
+
