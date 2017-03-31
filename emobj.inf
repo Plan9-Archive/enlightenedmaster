@@ -12,45 +12,18 @@ Decor	instructions "instructions" master_chamber
 	name 'card' 'instruction' 'instructions',
 	description "PLAY to start game, then LAUNCH. Control with targeted commands, such as SHOOT LEFT RAMP, SHOOT RIGHT RAMP, SHOOT BUMPERS. TARGETS prints a list of what you can currently shoot. You can EXAMINE a target to see your percent chance of hitting it or losing your ball. You can NUDGE to increase your luck, and CATCH to attempt to trap the ball on the flipper to greatly the accuracy of your next shot. You can also try FLIP to play a full ball automatically. SKILL will list current skill levels.";
 
-Target	lramp "left ramp" master_chamber
+Target	ramp "infinity ramp" master_chamber
 	with
-	name 'left' 'ramp',
-	hit [;
-		self.hitcount++;
-		em.points = em.points + self.value;
-		print "Left ramp hit ", self.hitcount, " +", self.value, " points. ";
+	name 'infinity' 'ramp',
+	triggers [;
 		switch(self.hitcount){
-		1: "~People say its impossible to reach infinity, but what if you're already there?~";
-		2: "~Paradoxes happen when self-reference becomes pathological, infinities happen when it is consturctive.~";
-		3: "~So yeah, I admit it - I'm the one who shaved the barber.~";
+		1:	choicelock.lockready = 1;
+			"~The Axiom of Choice Lock is now active. ~People say its impossible to reach infinity, but what if you're already there?~";
+		2: "~The beginning of the journey is just as satisfying as the end.~";
+		3: "~Like the art? I learned to juggle back in my days on the road.~";
+		4: "~Paradoxes happen when self-reference becomes pathological, infinities happen when it is consturctive.~";
+		5: "~So yeah, I admit it - I'm the one who shaved the barber.~";
 		default: "~Whoosh!~";
-		};
-	],
-	triggers [;
-		if((choicelock.lockready == 0) && (rramp.hitcount > 0)){
-			choicelock.lockready = 1;
-			"^~Good job, the Infinity ramp has activated Axiom of Choice lock. That's a hard shot though.~";
-		}
-	];
-
-Target	rramp "right ramp" master_chamber
-	with
-	name 'right' 'ramp',
-	hit [;
-		self.hitcount++;
-		em.points = em.points + self.value;
-		print "Right ramp hit ", self.hitcount, " +", self.value, " points. ";
-		switch(self.hitcount){
-		1: "~The beginning of the journey is just as satisfying as the end.~";
-		2: "~Like the art? I learned to juggle back in my days on the road.~";
-		3: "~Someday we will share a nice cup of infini-tea.~";
-		default: "~ZOOM!~";
-		};
-	],
-	triggers [;
-		if((choicelock.lockready == 0) && (lramp.hitcount > 0)){
-			choicelock.lockready = 1;
-			"^~Nicely played, the Infinity ramp has activated Axiom of Choice lock. That one's tricky so be careful.~";
 		}
 	];
 
@@ -84,12 +57,12 @@ Target	magnet "forcing magnet" master_chamber
 				"~You are really working the table now! You've climbed the staircase and taken the fork.~";
 			}
 			"~Keep the flow going, get 3 hits each on the staircase and fork to setup the next magnet bonus.~";
-		3:	if(lramp.hitcount >= 3 && rramp.hitcount >= 3) {
+		3:	if(ramp.hitcount >= 5) {
 				em.points = em.points + 500;
 				self.level++;
 				"~Amazing! You've completed every table goal...are you ready for the endgame? I'm quivering with anticipation to see how you do.~";
 			}
-			"~You're almost there. 3 hits each on the left and right ramp is your final table goal.~";
+			"~You're almost there. 5 hits on the infinity ramp is your next goal.~";
 		default: return true;
 		}
 	];
@@ -175,6 +148,7 @@ Target	fork "free will fork" master_chamber
 		1: "~From your perspective, the way the ball bounces is just random.~";
 		2: "~From the ball's perspective, the way you time the flippers is random, and it is choosing how to bounce.~";
 		3: "~From the inside, it doesn't feel random, because you are the origin of the new information.~";
+		default: "~Do what thou wilt shall be the whole of the law.~";
 		}
 	],
 	has ~shootable;
@@ -195,7 +169,7 @@ Target	choicelock "choice lock" master_chamber
 	],
 	triggers [;
 		if(self.lockready == 0)
-			"You need to activate both sides of the Infinity ramp to prime the Axiom lock.";
+			"You need to activate the Infinity ramp to prime the Axiom lock.";
 		if(self.hasball == 1) {
 			self.hasball = 0;
 			self.multicount++;
@@ -215,6 +189,7 @@ Target	staircase "diagonalization staircase" master_chamber
 		1: "~Climbing the Diagonal Staircase is one of the first steps past the smallest infinity.~";
 		2: "~In any one-to-one mapping between the counting numbers and the reals, you can construct an unlisted real by making each digit N differ from the Nth digit of the Nth real.~";
 		3: "~Diagonalization is a special case of Cantor's proof showing that it is always impossible to construct a one-to-one mapping between the individual elements of a set and all possible multiple element subsets.~";
+		default: "~Diagonalization always offers an escape hatch from any given formal system.~";
 		}
 	],
 	has ~shootable;
@@ -227,7 +202,7 @@ Target	fountain "fiction fountain" master_chamber
 	difficulty 110,
 	triggers [;
 		switch(self.hitcount) {
-		1: "~Shoot into the fountain for one of my reality-warping minigames.~";
+		1: "~Shoot into the fountain again for one of my reality-warping minigames.~";
 		2: 	print "~Whee, get ready!~ The dot-matrix display begins to show an animation of you playing a pinball game. The scene zooms in on the dot-matrix display, and an infinite tunnel results. You feel yourself falling into it, and you accelerate toward a familiar shape: '>'^";
 			em.didthing = 0;
 			startdaemon(orchard);
@@ -254,6 +229,7 @@ Target	carousel "communication carousel" master_chamber
 		3: "~It's pretty easy to feel calm oneness with the transfinite moment meditating in the forest, what about when you're sleepless, rushing to stay on time, and someone is rude to you?~";
 		4: "~Can you feel the natural and authentic emotion without being controlled by it, without reacting from a place of anger and keeping the wheel of karma spinning?~";
 		5: "~Preserving your freedom of action, protecting it even from your own emotions. Who is enlightened? One who can choose to wait to speak or act until calm within.~";
+		default: "~Communication inherently entangles the state of the communicating systems.~";
 		}
 	];
 
@@ -270,6 +246,7 @@ Target	electro "electro accelerator" master_chamber
 		3: "~But intensity and passion aren't bad, they aren't to be avoided. Sometimes they are exactly what is appropriate.~";
 		4: "~Letting go of attachment doesn't mean not feeling love, not caring about things. Rather, it means that we can love better if we are not controlled by the fear that makes us try to control others.~";
 		5: "~Similarly with creative work. The songbird sings because that is its nature, not to create a better song than any bird has ever sung before.~";
+		default: "~Faster, faster, until the thrill of speed overcomes the fear of death.~";
 		}
 	];
 
@@ -286,6 +263,7 @@ Target	spring "time spring" master_chamber
 		3: "~We are just a little bit of chaotic turbulence generated as a side-effect of the sun trying to reach thermal equilibrium with the rest of space.~";
 		4: "~We are rolling down a hill, a snowball of complexity bouncing along the curve of the entropy differential between past and future.~";
 		5: "~Space itself is generated by the asymmetry between past and future.~";
+		default: "~Time keeps on slipping.~";
 		}
 	];
 
@@ -302,6 +280,7 @@ Target	cardinal "large cardinal" master_chamber
 		3: "~Extendible cardinals can be the critical point of embeddings of an initial segment of the universe of the sets. No matter how large an initial segment we choose, the embedding generated will have the extendible critical point above the chosen ordinal of the initial segment.~";
 		4: "~Rank-into-rank cardinals are near the top of the hierarchy, relying on the strongest axioms we have not found to be inconsistent. A rank-into-rank is the critical point of an embedding of a transfinite initial segment of the universe of sets into itself.~";
 		5: "~The Kunen Inconsistency is the boundary of paradox. There can be no embedding of the full universe of sets to itself. At some point, our axioms become too strong, and lead to inconsistency.~";
+		default: "~If I knew a way to describe Woodin cardinals, I would.~";
 		}
 	];
 
