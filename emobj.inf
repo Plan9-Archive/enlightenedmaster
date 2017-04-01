@@ -10,7 +10,7 @@ Decor	mountain "mountain"
 Decor	instructions "instructions" master_chamber
 	with
 	name 'card' 'instruction' 'instructions',
-	description "PLAY to start game, then LAUNCH. Control with targeted commands, such as SHOOT LEFT RAMP, SHOOT RIGHT RAMP, SHOOT BUMPERS. TARGETS prints a list of what you can currently shoot. You can EXAMINE a target to see your percent chance of hitting it or losing your ball. You can NUDGE to increase your luck, and CATCH to attempt to trap the ball on the flipper to greatly the accuracy of your next shot. You can also try FLIP to play a full ball automatically. SKILL will list current skill levels.";
+	description "PLAY to start game, then LAUNCH. Control with targeted commands, such as SHOOT RAMP, SH BUMPERS. (SH is an abbreviation for SHOOT). TARGETS prints a list of what you can currently shoot. You can EXAMINE a target to see your percent chance of hitting it or losing your ball. You can NUDGE to increase your luck, and CATCH to attempt to trap the ball on the flipper to greatly the accuracy of your next shot. SKILL will list current skill levels. Each use of the SHOOT NUDGE or CATCH commands increases that skill by one point. The forcing magnet target gives bonuses for accomplishing goals. Good luck!";
 
 Target	ramp "infinity ramp" master_chamber
 	with
@@ -18,7 +18,7 @@ Target	ramp "infinity ramp" master_chamber
 	triggers [;
 		switch(self.hitcount){
 		1:	choicelock.lockready = 1;
-			"~The Axiom of Choice Lock is now active. ~People say its impossible to reach infinity, but what if you're already there?~";
+			"The Axiom of Choice Lock is now active. ~People say its impossible to reach infinity, but what if you're already there?~";
 		2: "~The beginning of the journey is just as satisfying as the end.~";
 		3: "~Like the art? I learned to juggle back in my days on the road.~";
 		4: "~Paradoxes happen when self-reference becomes pathological, infinities happen when it is consturctive.~";
@@ -31,38 +31,51 @@ Target	magnet "forcing magnet" master_chamber
 	with
 	name 'forcing' 'magnet',
 	value 50,
-	risk 65,
-	difficulty 125,
+	risk 55,
+	difficulty 95,
 	level 0,
-	newgame [;
-		self.level = 0;
-	],
+!	newgame [;
+!		self.level = 0;
+!	],
 	triggers [;
 		switch(self.level) {
 		0:	if(entropyegg.broken == 1 && bumpers.hitcount >= bumpers.goal) {
-				em.points = em.points + 500;
+				em.points = em.points + 200;
 				self.level++;
-				"~Wow! You got Induction on N and broke the entropy egg, that's a five hundred point bonus for you.~";
+				"~Wow! You got Induction on N and broke the entropy egg, that's a two hundred point bonus for you.~";
 			}
 			"~Before I can reward you, complete the successor bumpers and break open the entropy egg before shooting the magnet again for your first bonus.~";
-		1:	if(choicelock.multicount > 0 && fountain.hitcount >= 5) {
+		1:	if(ramp.hitcount >= 5 && popups.hitcount >= popups.goal) {
+				em.points = em.points + 300;
+				self.level++;
+				"~Amazing...are you ready for the next challenge? I'm quivering with anticipation to see how you do.~";
+			}
+			"~You're almost there. 5 hits on the infinity ramp and completing the principle popups is your next goal.~";
+		2:	if(staircase.hitcount >= 3 && fork.hitcount >= 3) {
+				em.points = em.points + 400;
+				self.level++;
+				"~You are really working the table now! You've climbed the staircase and taken the fork. 400 point bonus!~";
+			}
+			"~Keep the flow going, get 3 hits each on the staircase and fork to setup the next magnet bonus.~";
+
+		3:	if(choicelock.multicount > 0 && fountain.hitcount >= 5) {
 				em.points = em.points + 500;
 				self.level++;
 				"~Great work, you got Axiom of Choice multiball and visited a fiction through the fountain, that's another 500 extra points!~";
 			}
 			"~Lock two balls in the Axiom of Choice (shoot both sides of the ramp to activate it), get five hits on the fountain and shoot the magnet again for your next reward.~";
-		2:	if(staircase.hitcount >= 3 && fork.hitcount >= 3) {
-				em.points = em.points + 500;
+		4:	if(carousel.hitcount >= 5 && electro.hitcount >= 5){
+				em.points = em.points + 600;
 				self.level++;
-				"~You are really working the table now! You've climbed the staircase and taken the fork.~";
+				"~Thanks for your dedication to the Path, I can give you 600 points for that!~";
 			}
-			"~Keep the flow going, get 3 hits each on the staircase and fork to setup the next magnet bonus.~";
-		3:	if(ramp.hitcount >= 5) {
-				em.points = em.points + 500;
+			"~You need 5 hits each on the carousel and accelerator next.~";
+		5:	if(spring.hitcount >= 5 && cardinal.hitcount >= 5){
+				em.points = em.points + 1000;
 				self.level++;
-				"~Amazing! You've completed every table goal...are you ready for the endgame? I'm quivering with anticipation to see how you do.~";
+				"~That is a thousand point bonus for completing the final goal! Congratulations!~";
 			}
-			"~You're almost there. 5 hits on the infinity ramp is your next goal.~";
+			"~The final goal is five hits apiece on the time spring and the large cardinal.~";
 		default: return true;
 		}
 	];
@@ -76,7 +89,7 @@ Target	bumpers "bumpers" master_chamber
 	bounces 0,
 	goal 30,
 	newgame [;
-		self.value = 2;
+!		self.value = 2;
 		self.goal = 30;
 	],
 	hit [;
@@ -110,7 +123,7 @@ Target	bumpers "bumpers" master_chamber
 			"^~Since you like those bumpers so much, I'm doubling their value for you.~";
 		}
 		if(self.value == 4 && self.hitcount >= self.goal){
-			self.value = 9;
+			self.value = 7;
 			give staircase shootable;
 			"^Successor function reaches Induction on N. New target available: Diagonalization Staircase.";
 		}
@@ -119,6 +132,7 @@ Target	bumpers "bumpers" master_chamber
 Target	entropyegg "entropy egg" master_chamber
 	with
 	name 'entropy' 'egg',
+	difficulty 85,
 	broken 0,
 	newgame [;
 		give self shootable;
@@ -140,9 +154,9 @@ Target	entropyegg "entropy egg" master_chamber
 Target	fork "free will fork" master_chamber
 	with
 	name 'free' 'will' 'fork',
-	newgame [;
-		give self ~shootable;
-	],
+!	newgame [;
+!		give self ~shootable;
+!	],
 	triggers [;
 		switch(self.hitcount) {
 		1: "~From your perspective, the way the ball bounces is just random.~";
@@ -162,11 +176,11 @@ Target	choicelock "choice lock" master_chamber
 	lockready 0,
 	hasball 0,
 	multicount 0,
-	newgame [;
-		self.lockready = 0;
-		self.hasball = 0;
-		give self shootable;
-	],
+!	newgame [;
+!		self.lockready = 0;
+!		self.hasball = 0;
+!		give self shootable;
+!	],
 	triggers [;
 		if(self.lockready == 0)
 			"You need to activate the Infinity ramp to prime the Axiom lock.";
@@ -291,17 +305,17 @@ Target	popups "principle popups" master_chamber
 	risk 55,
 	difficulty 85,
 	bounces 0,
-	goal 30,
+	goal 20,
 	newgame [;
-		self.goal = 30;
+		self.goal = 20;
 	],
 	hit [;
 		self.bounces = random(10);
 		self.hitcount = self.hitcount + self.bounces;
 		em.points = em.points + (self.bounces * self.value);
 		print "The ball gets ", self.bounces, " hits on the principle popups for ", self.bounces * self.value, " points.^";
-!		if(self.hitcount < self.goal)
-!			print self.goal - self.hitcount, " more hits to reach Induction on N.^";
+		if(self.hitcount < self.goal)
+			print self.goal - self.hitcount, " more hits to complete popups.^";
 		switch(self.bounces){
 		1: "^~Keeping your awareness centered in the moment.~";
 		2: "^~It is natural to experience and act upon desires, but avoid attachment to them.~";
@@ -316,6 +330,10 @@ Target	popups "principle popups" master_chamber
 		};
 	],
 	triggers [;
+		if(self.value == 5 && self.hitcount >= self.goal){
+			self.value = 9;
+			"^Popups completed. Value increased to 9 per bounce.";
+		}
 	];
 
 !============================================================================
@@ -334,7 +352,8 @@ Prop	em "Enlightened Master" master_chamber
 	gameturns 0,
 	didthing 0,
 	description [;
-		print_ret "The Enlightened Master is a pinball machine with a purple cabinet and gold metal. The standard flipper buttons are bright pink. A card in the corner of the machine is labelled 'INSTRUCTIONS' and is filled with small print. The backglass is a detailed artist's impression of the mountain peak at sunset, casting an impossibly long shadow across the clouds toward the horizon. The playfield has an open central section with an illustration of a woman juggling golden apples at the center. Two ramps rise from the playfield and cross paths in a figure 8. A set of bumpers labeled '+1' are in the upper right. In the upper left, a curved metallic shape hovers over the words 'Forcing Magnet'. Along the far left edge is a narrow gap next to the words 'AoC Lock'. Other toys and mechanisms are hidden while inactive. Above the playfield is a silvery dot-matrix display showing the current high score: ", self.hiscore;
+		print "The Enlightened Master is a pinball machine with a purple cabinet and gold metal. The standard flipper buttons are bright pink. A card in the corner of the machine is labelled 'INSTRUCTIONS' and is filled with small print. The backglass is a detailed artist's impression of the mountain peak at sunset, casting an impossibly long shadow across the clouds toward the horizon. The playfield has an open central section with an illustration of a woman juggling golden apples at the center. Above the playfield is a silvery dot-matrix display showing the current high score: ", self.hiscore, "^^Shootable targets:^";
+		<<targets>>;
 	],
 	before [;
 		play: 
@@ -344,12 +363,12 @@ Prop	em "Enlightened Master" master_chamber
 			self.balls = 3;
 			self.points = 0;
 			skill.nudgecount = 0;
-			objectloop(x has gametarget) x.hitcount = 0;
+!			objectloop(x has gametarget) x.hitcount = 0;
 			objectloop(x has gametarget) x.newgame();
 			self.gamenumber++;
 			startdaemon(self);
 			switch(self.gamenumber) {
-			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! LAUNCH, then just SHOOT whatever target you like. TARGETS shows what you can shoot currently. Examine a target to see percentages. NUDGE and CATCH can increase your accuracy. SHOOT BUMPERS is a good place to start practicing, each action increases your SKILL.~";
+			1: "You hit the start button and a melodious female voice greets you. ~Thank you for coming to see me, and welcome, learner! LAUNCH, then just SHOOT whatever target you like. TARGETS shows what you can shoot currently. Examine a target to see percentages. NUDGE and CATCH can increase your accuracy. SHOOT BUMPERS is a good place to start practicing, each action increases your SKILL. The forcing magnet will reward you for accomplishing a series of goals.~";
 			2: "~I'm glad you're trying again. Don't get discouraged, your skill is increasing with every shot. What's hard now will be easy later. Of course, I'll have some new challenges for you then!~";
 			3: "~We're starting to get to know each other well now, aren't we? I'd introduce myself, but I really have too many different names to try to share them all.~";
 			default: "~Sure, I'm ready to go again!~";

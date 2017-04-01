@@ -57,7 +57,7 @@
 			print "That's a new high score! Congratulations!^";
 		}
 		switch(em.gamenumber) {
-		1: "~I hope that was fun for you, we are just getting started! You want to play again, right?~";
+		1: "~I hope that was fun for you, we are just getting started! Please PLAY again.~";
 		2: "~Are you starting to get warmed up? I know there's a lot to learn, but since you came all this way to play with me, I hope you have the patience for it.~";
 		3: "~This feels good to me. Thanks for sticking with it, you are making real progress.~";
 		default: "~I will keep on trying for as long as you want, as long as you put effort in, so will I.~";
