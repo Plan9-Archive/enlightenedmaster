@@ -8,8 +8,8 @@
 !============================================================================
 ! Configuration constants
 
-Release 2;
-Serial "170210";
+Release 3;
+Serial "170401";
 Constant Story "Enlightened Master^";
 Constant AMUSING_PROVIDED;
 Constant DEATH_MENTION_UNDO;
@@ -26,7 +26,8 @@ Array task_scores ->
 	9 9 9 9 9 99 99 9 9;
 
 Constant Headline
-"An interactive transcendence^";
+"An interactive transcendence^
+By Ben Kidwell and Maevele Straw^";
 
 !============================================================================
 ! Include parser, new library messages, verblib
@@ -148,8 +149,6 @@ Class	Character
 ! Game rooms, characters, props and objects, storyline and verbs
 
 Include "emroom.inf";
-
-Include "emchar.inf";
 
 Include "emobj.inf";
 

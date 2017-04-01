@@ -142,7 +142,7 @@
 	138: "^~Lemme situate where we are at more clearly: rationalist scientific materialism is almost correct, but it mistakenly excludes the actual infinite from consideration.~";
 	139: "^~Infinities are not illogical. Formal mathematical logic works with many varieties of infinitary structure. The full mathematical description of reality requires large cardinal axioms.~";
 	140: "^~The nature of our conscious experience requires logic that goes beyond ZFC to describe fully.~";
-	141: "^~For primarily cultural reasons, people with mathematical and scientific training often avoid philosophical interpretations of their work.~";
+	141: "^~Maybe consciousness can be formalized, but not without infinitary logic.~";
 	142: "^~Transfinite set theory gives mathematical meaning to ideas of the transcendent and shows a correspondence between reflection principles in the universe of sets and mystic ideals of mirroring between layers of reality.~";
 	143: "^~Traditional spiritual study leading to enlightenment can be seen as a way of learning how to diagonalize out of your current belief system.~";
 	144: "^~The Master says 'So you think you know what there is to be known? Show me the list of your beliefs.'~";
@@ -150,5 +150,16 @@
 	146: "^~The naive student thinks they must merely add the new statement to their belief system, but again the master shows a missing truth. The master says 'As long as you merely add new statements to your system, you remain trapped.'~";
 	147: "^~Then one day, the student understands the principle of diagonalization and realizes no list of truths can ever be all-encompassing, that their ideal of a Highest Truth was a phantasm.~";
 	148: "^~And the now-Enlightened student and the Master laugh together.~";
+	149: "^~I think you might be nearing completion of the goals of the game soon.~";
+	150: "^~I should probably qualify some of my speculation.~";
+	151: "^~The Bekenstein bound is a real problem for taking these ideas literally.~";
+	152: "^~If we identify ourselves with the finite region of space-time occupied by our brains and bodies, there is a finite amount of information that region can contain.~";
+	153: "^~To save a literal infinity, we need to claim that our experiencing self can't be limited to any specified finite region, not even its light-cone boundary.~";
+	154: "^~Even from a strict physicalist perspective, you might claim an infinite amount of information within the past and future and light cones of the self.~";
+	155: "^~Another approach is to yield on the strict point of physical finitude, but claim that the logical structure of our finitude mirrors that of infinite structures.~";
+	156: "^~For example, a computer generated bitmap can only approximate an infinite structure such as a fractal, but still embodies it meaningfully.~";
+	157: "^~Maybe there is a principle like Lowenheim-Skolem which describes how sufficiently rich finite models can approximate the features of infinite models.~";
+	158: "^~I actually don't have too much more to say, other than thank you.~";
+	159: "^~What good is Enlightenment if it isn't fun?~";
 	}
 ];
