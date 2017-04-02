@@ -9,11 +9,11 @@
 ! Configuration constants
 
 Release 3;
-Serial "170401";
+Serial "170402";
 Constant Story "Enlightened Master^";
 Constant AMUSING_PROVIDED;
 Constant DEATH_MENTION_UNDO;
-Constant MAX_SCORE = 999;
+Constant MAX_SCORE = 32000;
 Constant TASKS_PROVIDED;
 Constant NUMBER_TASKS = 63;
 Array task_scores -> 
@@ -70,7 +70,6 @@ Include "verblib";
 ! Global variables
 
 Global clockoff = false;
-Global daynumber = 0;
 Global roll = 0;
 Global x = 0;
 Attribute shootable;

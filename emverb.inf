@@ -2,7 +2,7 @@
 ! Entry point functions
 
 [ Amusing;
-	print "Have you tried...
+	print "Honestly, I think the whole premise of the game ought to be amusing enough. An enlightened pinball machine that spouts off about set theory and used to be a hitchhiking waitress?
 ^^";
 ];
 
@@ -16,15 +16,6 @@
 [ Timepasses;
 	if (em.ingame)
 		score = em.points;
-	if (clockoff == true)
-		return true;
-	if (the_time == 0){
-		daynumber = daynumber + 1;
-!		print "^Midnight strikes and a new day dawns.^(This is day number ", daynumber,")^";
-		switch(daynumber){
-		default: return true;
-		}
-	}
 ];
 
 [ Initialise;
@@ -135,7 +126,7 @@
 	2: "-Hunter S. Thompson";
 	3: "-Steve Miller";
 	5: "-Aleister Crowley";
-	default: "Probably a special case of the Navier-Stokes equations.";
+	default: "Probably an aleph fixed-point.";
 	};
 ];
 
@@ -364,7 +355,7 @@
 	if(skill.nudgeflag == 1)
 		"You have already nudged for the next shot.";
 	if(skill.nudgecount > 10)
-		"Your nudging muscles are fatigued, no more nudging this game.";
+		"Your nudging muscles are fatigued, no more nudging until your next 3 balls.";
 !	em.didthing = 1;
 	skill.nudgecount++;
 	skill.nudge++;
