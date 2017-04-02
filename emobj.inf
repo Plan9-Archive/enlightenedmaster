@@ -169,7 +169,7 @@ Target	fork "free will fork" master_chamber
 
 Target	choicelock "choice lock" master_chamber
 	with
-	name 'axiom' 'choice' 'lock' 'aoc',
+	name 'axiom' 'of' 'choice' 'lock' 'aoc',
 	value 75,
 	risk 75,
 	difficulty 150,
