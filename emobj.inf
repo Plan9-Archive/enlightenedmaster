@@ -42,41 +42,41 @@ Target	magnet "forcing magnet" master_chamber
 		0:	if(entropyegg.broken == 1 && bumpers.hitcount >= bumpers.goal) {
 				em.points = em.points + 200;
 				self.level++;
-				"~Wow! You got Induction on N and broke the entropy egg, that's a two hundred point bonus for you.~";
+				"~Wow! You got Induction on N and broke the entropy egg, that's a two hundred point bonus for you. Your next goal is to get 5 hits on the infinity ramp and complete the principle popups.~";
 			}
 			"~Before I can reward you, complete the successor bumpers and break open the entropy egg before shooting the magnet again for your first bonus.~";
 		1:	if(ramp.hitcount >= 5 && popups.hitcount >= popups.goal) {
 				em.points = em.points + 300;
 				self.level++;
-				"~Amazing...are you ready for the next challenge? I'm quivering with anticipation to see how you do.~";
+				"~Amazing...are you ready for the next challenge? I'm quivering with anticipation to see how you do. You just need 3 hits each on the diagonalization staircase and the free will fork.~";
 			}
 			"~You're almost there. 5 hits on the infinity ramp and completing the principle popups is your next goal.~";
 		2:	if(staircase.hitcount >= 3 && fork.hitcount >= 3) {
 				em.points = em.points + 400;
 				self.level++;
-				"~You are really working the table now! You've climbed the staircase and taken the fork. 400 point bonus!~";
+				"~You are really working the table now! You've climbed the staircase and taken the fork. 400 point bonus! Next goal is 5 hits on the fiction fountain (be prepared for hijinks!) and get multiball from the axiom of choice lock.~";
 			}
 			"~Keep the flow going, get 3 hits each on the staircase and fork to setup the next magnet bonus.~";
 
 		3:	if(choicelock.multicount > 0 && fountain.hitcount >= 5) {
 				em.points = em.points + 500;
 				self.level++;
-				"~Great work, you got Axiom of Choice multiball and visited a fiction through the fountain, that's another 500 extra points!~";
+				"~Great work, you got Axiom of Choice multiball and visited a fiction through the fountain, that's another 500 extra points! Can you try for 5 hits each on the communication carousel and the electro accelerator?~";
 			}
 			"~Lock two balls in the Axiom of Choice (shoot both sides of the ramp to activate it), get five hits on the fountain and shoot the magnet again for your next reward.~";
 		4:	if(carousel.hitcount >= 5 && electro.hitcount >= 5){
 				em.points = em.points + 600;
 				self.level++;
-				"~Thanks for your dedication to the Path, I can give you 600 points for that!~";
+				"~Thanks for your dedication to the Path, I can give you 600 points for that! To complete my challenges, you need 5 hits each on the time spring and the large cardinal!~";
 			}
 			"~You need 5 hits each on the carousel and accelerator next.~";
 		5:	if(spring.hitcount >= 5 && cardinal.hitcount >= 5){
 				em.points = em.points + 1000;
 				self.level++;
-				"~That is a thousand point bonus for completing the final goal! Congratulations!~";
+				"~That is a thousand point bonus for completing the final goal! Congratulations, you have learned most of what I am able to teach you in my current form. Feel free to keep playing and go for the ultimate high score!~";
 			}
 			"~The final goal is five hits apiece on the time spring and the large cardinal.~";
-		default: return true;
+		default: "~Forcing is a technique for constructing set theoretical models with chosen characteristics. It was introduced by Cohen to show it was consistent with ZFC to assume the negation of the continuum hypothetsis.~";
 		}
 	];
 
@@ -162,7 +162,7 @@ Target	fork "free will fork" master_chamber
 		1: "~From your perspective, the way the ball bounces is just random.~";
 		2: "~From the ball's perspective, the way you time the flippers is random, and it is choosing how to bounce.~";
 		3: "~From the inside, it doesn't feel random, because you are the origin of the new information.~";
-		default: "~Do what thou wilt shall be the whole of the law.~";
+		default: "~Do what thou wilt shall be the whole of the law.~ (Footnote 5)";
 		}
 	],
 	has ~shootable;
@@ -221,12 +221,13 @@ Target	fountain "fiction fountain" master_chamber
 			em.didthing = 0;
 			startdaemon(orchard);
 			playerto(orchard);
-		3: print "~Real vs. Imaginary is one of the most abused and misleading dichotomies, don'cha know.~ Once again you find yourself drawn into the video display toward the '>'^";
+		3: "~Maybe I'm imaginary in some senses, but the words I'm speaking are real, right? An imaginary machine that speaks real sentences, cool trick!~";
+		4: "~Real vs. Imaginary is one of the most abused and misleading dichotomies, don'cha know.~";
+		5: print "~Usually its a sneaky way of justifying a value judgment, with the hidden premise that imaginary things aren't important.~ Once again you find yourself drawn into the video display toward the '>'^";
 			em.didthing = 0;
 			startdaemon(highway);
 			playerto(highway);
-		4: "~Usually its a sneaky way of justifying a value judgment, with the hidden premise that imaginary things aren't important.~";
-		5: "~I mean, maybe I'm imaginary in some senses, but the words I'm speaking are real, right? An imaginary machine that speaks real sentences, cool trick!~";
+		default: "~The way to become the author of your own story is to let the universe tell its story through you.~";
 		}
 	];
 
@@ -260,7 +261,7 @@ Target	electro "electro accelerator" master_chamber
 		3: "~But intensity and passion aren't bad, they aren't to be avoided. Sometimes they are exactly what is appropriate.~";
 		4: "~Letting go of attachment doesn't mean not feeling love, not caring about things. Rather, it means that we can love better if we are not controlled by the fear that makes us try to control others.~";
 		5: "~Similarly with creative work. The songbird sings because that is its nature, not to create a better song than any bird has ever sung before.~";
-		default: "~Faster, faster, until the thrill of speed overcomes the fear of death.~";
+		default: "~Faster, faster, until the thrill of speed overcomes the fear of death.~ (Footnote 2)";
 		}
 	];
 
@@ -277,7 +278,7 @@ Target	spring "time spring" master_chamber
 		3: "~We are just a little bit of chaotic turbulence generated as a side-effect of the sun trying to reach thermal equilibrium with the rest of space.~";
 		4: "~We are rolling down a hill, a snowball of complexity bouncing along the curve of the entropy differential between past and future.~";
 		5: "~Space itself is generated by the asymmetry between past and future.~";
-		default: "~Time keeps on slipping.~";
+		default: "~Time keeps on slipping.~ (Footnote 3)";
 		}
 	];
 

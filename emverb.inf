@@ -132,6 +132,9 @@
 [ Footnotesub;
 	switch(noun) {
 	1: "Not many footnotes yet, are there?";
+	2: "-Hunter S. Thompson";
+	3: "-Steve Miller";
+	5: "-Aleister Crowley";
 	default: "Probably a special case of the Navier-Stokes equations.";
 	};
 ];
@@ -140,14 +143,11 @@
 ];
 
 [ Helpsub;
-	"Move around using compass directions (n s e w ne nw se sw up down in out), examine things (x NAME), take things and look in your inventory (take NAME, i), and talk to characters (talk to NAME). An intro/guide: http://inform7.com/learn/eg/dm/IntroductionToIF.pdf
-^
-^You can come up with ideas for what to do next if you >think (or check >goals). Specific hints from the >hint command are available based on your location and progression in the story. You can also type >hint NAME for hints about objects in your vicinity. All required plot-advancing conversations are triggered by >talk to. Characters may have new >talk to responses after story events. Optional conversations are available with >ask NAME about and >tell NAME about. If you are not progressing on your own, the game will automatically trigger some plot events based on an internal timer. You can use >sleep to advance a day, and >story to skip to the next event. >clockoff will deactivate automatic story progression. >clockon to reactivate. >verblist will show all verbs needed to score all points. >summary will provide a mildly spoilery overview of the general plot of the game, and >walkthrough will provide a comprehensive command list to score all 999 points. >about and >credits provide some additional background and authorship information.^";
+	"First, go up repeatedly to climb the mountain, camping as you need along the way. When you reach the top go in, down, and west to reach the Enlightened Master. The rest of the game is about interacting with the Master.^";
 ];
 
 [ Hintsub;
-	print "(Different hints are available depending on your location and story progress. hint NAME will give object specific hints for things you can see.)^^";	
-	"The maximum score is 999 points. Many of those points can be missed if certain optional actions are not performed before plot events.";
+	<<help>>;
 ];
 
 [ Lunarsub;

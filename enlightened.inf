@@ -140,10 +140,10 @@ Class	Prop
 	description "UNIMPLEMENTED PROP DESCRIPTION",
 	has	static;
 
-Class	Character
-	with
-	description "UNIMPLEMENTED ACTOR DESCRIPTION",
-	has	proper animate;
+!Class	Character
+!	with
+!	description "UNIMPLEMENTED ACTOR DESCRIPTION",
+!	has	proper animate;
 
 !===========================================================================
 ! Game rooms, characters, props and objects, storyline and verbs

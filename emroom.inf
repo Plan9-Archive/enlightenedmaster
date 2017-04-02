@@ -11,6 +11,7 @@ Room	base "At the base of an immense mountain"
 Room	icefall "In the midst of a treacherous icefall"
 	with
 	description "You are in the midst of a potentially lethal maze of giant slabs and boulders of ice. A frozen river trapped in a crystallized waterfall. You hear ominous creaks and snaps from the gradual shifting of the ice around you.",
+	cant_go "Your path is upward.",
 	d_to base,
 	u_to camp_low;
 
@@ -22,6 +23,7 @@ Room	camp_low "Campsite, Low Altitude"
 		camp:	self.camped = 1;
 				"You set up your tent and crawl inside. Despite your fatigue, it takes you awhile to fall asleep, as the anticipation is electric within you.";
 	],
+	cant_go "Your path is upward.",
 	u_to [;
 		if (self.camped == 0)
 			"You need to CAMP and continue up the mountain tomorrow.";
@@ -32,18 +34,21 @@ Room	camp_low "Campsite, Low Altitude"
 Room	snow_hill "Long sloped snowfield"
 	with
 	description "A seemingly endless expanse of snow angles upward ahead of you. The scale is vast and overwhelming, and the frigid air makes the bigness almost painfully isolating.",
+	cant_go "Your path is upward.",
 	d_to camp_low,
 	u_to boulders;
 
 Room	boulders "Piled boulders"
 	with
 	description "The angle of the mountain becomes abruptly steeper, and the transition is marked by a wide band of piled boulders, evidently at rest here after breaking off the mountain's higher altitudes. The footing is treacherous and the pace slow.",
+	cant_go "Your path is upward.",
 	d_to snow_hill,
 	u_to middle_wall;
 
 Room	middle_wall "Near-vertical wall"
 	with
 	description "The first section of technical rock climbing is a five hundred foot slab of nearly vertical rock. With slow and careful use of safety ropes and anchor points, you have reached the midpoint of the cliff section.",
+	cant_go "Your path is upward.",
 	d_to boulders,
 	u_to camp_mid;
 
@@ -55,6 +60,7 @@ Room	camp_mid "Campsite, Middle Altitude"
 		camp:	self.camped = 1;
 				"You set up your tent and crawl inside. You eat a cup of cous-cous and try to keep your mind clear despite your cold and aching body.";
 	],
+	cant_go "Your path is upward.",
 	u_to [;
 		if (self.camped == 0)
 			"You need to CAMP and continue up the mountain tomorrow.";
@@ -65,18 +71,21 @@ Room	camp_mid "Campsite, Middle Altitude"
 Room	exposed_ridge "Exposed ridge"
 	with
 	description "The path upward is a knife-edged ridge that ascends gradually toward the summit, with precipitous descents on either side. The howling wind sometimes forces you to crouch and attempt to anchor yourself with your ice axe.",
+	cant_go "Your path is upward.",
 	d_to camp_mid,
 	u_to ice_chimney;
 
 Room	ice_chimney "Narrow ice-filled rock chimney"
 	with
 	description "The climb becomes grim and precarious as it reaches another vertical section, this one composed of a series of ice-filled creases pointing toward the peak. You probe the ice with screws, seeking secure anchor, and try to control your labored breathing in the thin air.",
+	cant_go "Your path is upward.",
 	d_to exposed_ridge,
 	u_to traverse;
 
 Room	traverse "Horizontal traverse"
 	with
 	description "Upward momentum is interrupted by a menacing overhanging shelf of ice. It is necessary to traverse sideways beneath it. You try to balance safety with speed, knowing that at any moment, ice falling from above could tear you off the side of the mountain.",
+	cant_go "Your path is upward.",
 	d_to ice_chimney,
 	u_to camp_high;
 
@@ -88,6 +97,7 @@ Room	camp_high "Campsite, High Altitude"
 		camp:	self.camped = 1;
 				"You set up your tent and crawl inside. Tomorrow, you think as you sink into a restless, low-oxygen sleep, tomorrow is the day.";
 	],
+	cant_go "Your path is upward.",
 	u_to [;
 		if (self.camped == 0)
 			"You need to CAMP and continue up the mountain tomorrow.";
@@ -98,30 +108,35 @@ Room	camp_high "Campsite, High Altitude"
 Room	high_wall "High wall, summit approach"
 	with
 	description "The final vertical wall section is even taller and more featureless, almost abstract in its completely impersonal and unyielding solidity. Your tools and gear are almost useless here, and you feel sure that your few precarious placements would not save you if you lost your grip.",
+	cant_go "Your path is upward.",
 	d_to camp_high,
 	u_to final_approach;
 
 Room	final_approach "Gale-swept crags, summit approach"
 	with
 	description "Near the summit, the wind attains a malevolent ferocity. The sharp crags and outcroppings of the final ascent act as funnels, forcing you to detour around gaps from which the wind emerges with the force of a cannon. The cold has penetrated so deeply that numbness has spread from your limbs into your torso.",
+	cant_go "Your path is upward.",
 	d_to high_wall,
 	u_to summit;
 
 Room	summit	"Summit, by cave entrance"
 	with
 	description "You have attained the summit, but you feel no surge of triumph. The physical peak means nothing to you. To reach the threshold of this cave, you would have as happily plumbed the ocean, trekked deserts, or searched the city slums. The summit is a bleak pinnacle of frozen granite with a panoramic view of the surrounding mountains. The entrance to the cave of the Enlightened Master is a few meteres below the summit, a jagged darkness angling back down into the mountain.",
+	cant_go "Your path is to go in.",
 	d_to final_approach,
 	in_to cave_entrance;
 
 Room	cave_entrance "Cave entrance"
 	with
 	description "You have finally reached your goal, the cave where the Enlightened Master is to be found. A path is visible leading downward.",
+	cant_go "Your path is downward.",
 	out_to summit,
 	d_to master_threshold;
 
 Room	master_threshold "Shadowy cavern"
 	with
 	description "The light grows dim as the path twists away from the entrance. After a few turns, the path enters a larger space. All that is visible is blue-black shadow, save for the western wall, which flickers dimly. You hear a faint sound of bells from the west.",
+	cant_go "Your path is west.",
 	u_to cave_entrance,
 	w_to master_chamber;
 
